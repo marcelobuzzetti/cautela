@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+/*Materiais*/
 Route::get('/materiais', 'MaterialController@lista');
 
 Route::get('/materiais/novo', 'MaterialController@novo');
@@ -25,6 +25,7 @@ Route::get('/materiais/altera/{id}', 'MaterialController@altera')->where('id','[
 
 Route::post('/materiais/apaga', 'MaterialController@apaga');
 
+/*Militares*/
 Route::get('/militares', 'MilitarController@lista');
 
 Route::get('/militares/novo', 'MilitarController@novo');
@@ -35,6 +36,7 @@ Route::get('/militares/altera/{id}', 'MilitarController@altera')->where('id','[0
 
 Route::post('/militares/apaga', 'MilitarController@apaga');
 
+/*Pelotões*/
 Route::get('/pelotoes', 'PelotaoController@lista');
 
 Route::get('/pelotoes/novo', 'PelotaoController@novo');
@@ -44,6 +46,9 @@ Route::post('/pelotoes/adiciona', 'PelotaoController@adiciona');
 Route::get('/pelotoes/altera/{id}', 'PelotaoController@altera')->where('id','[0-9]+');
 
 Route::post('/pelotoes/apaga', 'PelotaoController@apaga');
+
+/*Cautela*/
+Route::get('/cautelas', 'CautelaController@lista');
 
 Auth::routes();
 

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PelotaoTableSeeder::class);
         $this->call(PerfilTableSeeder::class);
         $this->call(ReservaTableSeeder::class);
+        $this->call(CautelaTableSeeder::class);
     }
 }
 
@@ -84,4 +85,15 @@ class ReservaTableSeeder extends Seeder
 			values (?)',
 			array('Subtenecia'));
 	}
+}
+
+class CautelaTableSeeder extends Seeder
+{
+
+	public function run (){
+		DB::insert('insert into cautelas(militar,material,quantidade, data_cautela)
+			values (?,?,?,?)',
+			array(1,1,1,"2018-01-02 00:00:00"));
+	}
+
 }
