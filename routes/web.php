@@ -14,3 +14,37 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/materiais', 'MaterialController@lista');
+
+Route::get('/materiais/novo', 'MaterialController@novo');
+
+Route::post('/materiais/adiciona', 'MaterialController@adiciona');
+
+Route::get('/materiais/altera/{id}', 'MaterialController@altera')->where('id','[0-9]+');
+
+Route::post('/materiais/apaga', 'MaterialController@apaga');
+
+Route::get('/militares', 'MilitarController@lista');
+
+Route::get('/militares/novo', 'MilitarController@novo');
+
+Route::post('/militares/adiciona', 'MilitarController@adiciona');
+
+Route::get('/militares/altera/{id}', 'MilitarController@altera')->where('id','[0-9]+');
+
+Route::post('/militares/apaga', 'MilitarController@apaga');
+
+Route::get('/pelotoes', 'PelotaoController@lista');
+
+Route::get('/pelotoes/novo', 'PelotaoController@novo');
+
+Route::post('/pelotoes/adiciona', 'PelotaoController@adiciona');
+
+Route::get('/pelotoes/altera/{id}', 'PelotaoController@altera')->where('id','[0-9]+');
+
+Route::post('/pelotoes/apaga', 'PelotaoController@apaga');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

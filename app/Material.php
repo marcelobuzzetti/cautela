@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace cautela;
 
 use Illuminate\Database\Eloquent\Model;
 
-class material extends Model
+class Material extends Model
 {
  	protected $table = 'materiais';
     public $timestamps = false;
