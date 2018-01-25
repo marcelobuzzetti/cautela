@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PerfilTableSeeder::class);
         $this->call(ReservaTableSeeder::class);
         $this->call(CautelaTableSeeder::class);
+        $this->call(CautelaMateriaisTableSeeder::class);
+        
     }
 }
 
@@ -91,9 +93,19 @@ class CautelaTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into cautelas(militar,material,quantidade, data_cautela)
-			values (?,?,?,?)',
-			array(1,1,1,"2018-01-02 00:00:00"));
+		DB::insert('insert into cautelas(militar, data_cautela)
+			values (?,?)',
+			array(1,"2018-01-02 00:00:00"));
+	}
+}
+
+class CautelaMateriaisTableSeeder extends Seeder
+{
+
+	public function run (){
+		DB::insert('insert into cautelamateriais(cautela, material, data_cautela)
+			values (?,?,?)',
+			array(1, 1, "2018-01-02 00:00:00"));
 	}
 
 }

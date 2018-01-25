@@ -4,12 +4,12 @@ namespace cautela;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cautela extends Model
+class CautelaMaterial extends Model
 {
-    protected $table = 'cautelas';
+    protected $table = 'cautelamateriais';
     public $timestamps = false;
     /*O que pode ser inserido nesse objeto*/
-    protected $fillable = array('militar', 'data_cautela', 'data_entrega');
+    protected $fillable = array('cautela', 'material', 'data_cautela');
 
     /*O não pode ser modificado*/
     protected $guarded = ['id'];

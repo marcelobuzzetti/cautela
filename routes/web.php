@@ -50,6 +50,8 @@ Route::post('/pelotoes/apaga', 'PelotaoController@apaga');
 /*Cautela*/
 Route::get('/cautelas', 'CautelaController@lista');
 
+Route::get('/cautelas/novo', 'CautelaMaterialController@novo');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

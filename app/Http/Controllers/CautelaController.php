@@ -11,10 +11,9 @@ use Validator;
 class CautelaController extends Controller
 {
     public function lista(){
-    	$cautelas = DB::select('select cautelas.id, militares.nome_guerra as nome, materiais.nome as material, cautelas.quantidade as quantidade, data_cautela
-    		from cautelas,militares,materiais 
-    		where cautelas.militar = militares.id
-    		and cautelas.material = materiais.id');
+    	$cautelas = DB::select('select cautelas.id, militares.nome_guerra as nome, data_cautela
+    		from cautelas,militares
+    		where cautelas.militar = militares.id');
 		
 		return view('cautela.listagem')->withCautelas($cautelas);
 	}
