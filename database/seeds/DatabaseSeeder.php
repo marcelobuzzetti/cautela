@@ -104,9 +104,9 @@ class CautelaMateriaisTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into cautelamateriais(cautela, material, data_cautela)
-			values (?,?,?)',
-			array(1, 1, "2018-01-02"));
+		DB::insert('insert into cautelamateriais(cautela, material, quantidade, data_cautela)
+			values (?,?,?,?)',
+			array(1, 1, 1, "2018-01-02"));
 	}
 
 }

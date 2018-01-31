@@ -20,6 +20,10 @@
       @endforeach
     </select>
   </div>
+   <div class="form-group">
+    <label>Quantidade</label>
+    <input type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
+  </div>
   <div class="form-group">
     <label>Data Cautela</label>
     <input type="date" name="data_cautela">
