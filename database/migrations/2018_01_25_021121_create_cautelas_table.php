@@ -16,8 +16,8 @@ class CreateCautelasTable extends Migration
         Schema::create('cautelas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('militar');
-            $table->datetime('data_cautela')->nullable();
-            $table->datetime('data_entrega')->nullable();
+            $table->date('data_cautela')->nullable();
+            $table->date('data_entrega')->nullable();
             $table->timestamps();
         });
     }

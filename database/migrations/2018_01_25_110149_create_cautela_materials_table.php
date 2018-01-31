@@ -17,7 +17,7 @@ class CreateCautelaMaterialsTable extends Migration
             $table->increments('id');
             $table->integer('cautela');
             $table->integer('material');
-            $table->datetime('data_cautela')->nullable();
+            $table->date('data_cautela')->nullable();
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReservaTableSeeder::class);
         $this->call(CautelaTableSeeder::class);
         $this->call(CautelaMateriaisTableSeeder::class);
+        $this->call(UsuarioTableSeeder::class);
         
     }
 }
@@ -95,7 +96,7 @@ class CautelaTableSeeder extends Seeder
 	public function run (){
 		DB::insert('insert into cautelas(militar, data_cautela)
 			values (?,?)',
-			array(1,"2018-01-02 00:00:00"));
+			array(1,"2018-01-02"));
 	}
 }
 
@@ -105,7 +106,21 @@ class CautelaMateriaisTableSeeder extends Seeder
 	public function run (){
 		DB::insert('insert into cautelamateriais(cautela, material, data_cautela)
 			values (?,?,?)',
-			array(1, 1, "2018-01-02 00:00:00"));
+			array(1, 1, "2018-01-02"));
 	}
 
 }
+
+class UsuarioTableSeeder extends Seeder
+{
+
+	public function run (){
+		DB::insert('insert into users(name, email, password, perfil)
+			values (?,?,?,?)',
+			array('Marcelo', 'marcelobuzzetti@gmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', '1'));
+	}
+
+}
+
+
+
