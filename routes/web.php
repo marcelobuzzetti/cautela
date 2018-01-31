@@ -50,7 +50,18 @@ Route::post('/pelotoes/apaga', 'PelotaoController@apaga');
 /*Cautela*/
 Route::get('/cautelas', 'CautelaController@lista');
 
-Route::get('/cautelas/novo', 'CautelaMaterialController@novo');
+Route::get('/cautelas/novo', 'CautelaController@novo');
+
+Route::post('/cautelas/adiciona', 'CautelaController@adiciona');
+
+Route::post('/cautelas/apaga', 'CautelaController@apaga');
+
+Route::post('/cautelas/detalhes', 'CautelaController@detalhes');
+
+/*Cautelar Material*/
+Route::post('/cautelamaterial', 'CautelaMaterialController@novo');
+
+Route::post('/cautelamaterial/adiciona', 'CautelaMaterialController@adiciona');
 
 Auth::routes();
 
