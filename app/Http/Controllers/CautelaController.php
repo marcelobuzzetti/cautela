@@ -44,7 +44,7 @@ class CautelaController extends Controller
             and cautelas.id = ?',
         array($id));
 
-    	$materiaiscautelados = DB::select('select materiais.nome, data_cautela 
+    	$materiaiscautelados = DB::select('select materiais.nome, data_cautela , cautelamateriais.quantidade as quantidade
     		from cautelamateriais, materiais
     		where cautelamateriais.material = materiais.id
     		and cautelamateriais.cautela = ?',

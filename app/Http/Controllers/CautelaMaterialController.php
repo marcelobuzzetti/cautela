@@ -20,10 +20,10 @@ class CautelaMaterialController extends Controller
         
     	$materiais = DB::select('select *from materiais');
 
-    	$materiaiscautelados = DB::select('select materiais.nome, data_cautela 
+    	$materiaiscautelados = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade
     		from cautelamateriais, materiais
     		where cautelamateriais.material = materiais.id
-           and cautelamateriais.cautela = ?',
+            and cautelamateriais.cautela = ?',
             array($id));
 		
 		return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados);
@@ -40,10 +40,10 @@ class CautelaMaterialController extends Controller
         
         $materiais = DB::select('select *from materiais');
 
-        $materiaiscautelados = DB::select('select materiais.nome, data_cautela 
+        $materiaiscautelados = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
-           and cautelamateriais.cautela = ?',
+            and cautelamateriais.cautela = ?',
             array($id));
         return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados);
     }

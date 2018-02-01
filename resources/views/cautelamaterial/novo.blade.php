@@ -36,12 +36,14 @@
               <tr>
                   <th>Material</th>
                   <th>Data de Cautela</th>
+                  <th>Quantidade</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
                   <th>Material</th>
                   <th>Data de Cautela</th>
+                  <th>Quantidade</th>
               </tr>
             </tfoot>
 
@@ -50,6 +52,7 @@
               <tr>
                 <td>{{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
+                <td>{{$c->quantidade}}</td>
               </tr>
             @endforeach
             </tbody>
