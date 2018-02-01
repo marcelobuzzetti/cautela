@@ -30,8 +30,8 @@ class CautelaMaterialController extends Controller
 	}
 
     public function adiciona(){
+        $id = Request::input('cautela');
         CautelaMaterial::create(Request::all());
-         $id = Request::input('id');
         $cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
             from cautelas,militares
             where cautelas.militar = militares.id
@@ -42,8 +42,9 @@ class CautelaMaterialController extends Controller
 
         $materiaiscautelados = DB::select('select materiais.nome, data_cautela 
             from cautelamateriais, materiais
-            where cautelamateriais.material = materiais.id');
-        
+            where cautelamateriais.material = materiais.id
+           and cautelamateriais.cautela = ?',
+            array($id));
         return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados);
     }
 }

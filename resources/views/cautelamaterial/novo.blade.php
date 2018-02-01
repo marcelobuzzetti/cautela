@@ -7,7 +7,7 @@
   <div class="form-group">
     <label>Cautela</label>
     @foreach ($cautela as $c)
-    <input name="cautela" value="{{$c->id}}" hidden="hidden">
+    <input name="cautela" value="{{$c->id}}" type="hidden">
     <p>Número {{$c->id}} - Militar {{$c->nome}}</p>
     @endforeach
   </div>
