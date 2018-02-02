@@ -1,6 +1,9 @@
 @extends('layout.principal')
 
 @section('content')
+
+<div class="row">
+
 <div class="form-group">
     <label>Cautela</label>
     @foreach ($cautela as $c)
@@ -8,7 +11,6 @@
     <p>Número {{$c->id}} - Militar {{$c->nome}}</p>
     @endforeach
   </div>
-<div class="row">
          <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
@@ -48,3 +50,4 @@
             </tbody>
           </table>  
       </div>
+@endsection
