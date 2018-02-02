@@ -4,6 +4,7 @@ namespace cautela\Http\Controllers;
 
 use Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use cautela\Http\Controllers\Controller;
 use cautela\CautelaMaterial;
 use Validator;
@@ -20,13 +21,18 @@ class CautelaMaterialController extends Controller
         
     	$materiais = DB::select('select *from materiais');
 
-    	$materiaiscautelados = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade
+    	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
     		from cautelamateriais, materiais
     		where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
 		
-		return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados);
+		 $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+            from cautelamateriais, materiais
+            where cautelamateriais.material = materiais.id
+            and cautelamateriais.cautela = ?',
+            array($id));
+        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
 	}
 
     public function adiciona(){
@@ -40,11 +46,49 @@ class CautelaMaterialController extends Controller
         
         $materiais = DB::select('select *from materiais');
 
-        $materiaiscautelados = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade
+        $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
-        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados);
+        
+        $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+            from cautelamateriais, materiais
+            where cautelamateriais.material = materiais.id
+            and cautelamateriais.cautela = ?',
+            array($id));
+        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
+    }
+
+    public function entrega(){
+        $id = Request::input('id');
+        $today = date("Y-m-d"); 
+        CautelaMaterial::where('id', $id)->update(array('data_entrega' => $today));
+        DB::select('update cautelamateriais
+                    set data_entrega = ?
+                    where id = ?',
+                    array($today,$id));
+
+        $id = Request::input('cautela');
+        $cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
+            from cautelas,militares
+            where cautelas.militar = militares.id
+            and cautelas.id = ?',
+        array($id));
+        
+        $materiais = DB::select('select *from materiais');
+
+       $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+            from cautelamateriais, materiais
+            where cautelamateriais.material = materiais.id
+            and cautelamateriais.cautela = ?',
+            array($id));
+        
+         $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+            from cautelamateriais, materiais
+            where cautelamateriais.material = materiais.id
+            and cautelamateriais.cautela = ?',
+            array($id));
+        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
     }
 }

@@ -63,6 +63,8 @@ Route::post('/cautelamaterial', 'CautelaMaterialController@novo');
 
 Route::post('/cautelamaterial/adiciona', 'CautelaMaterialController@adiciona');
 
+Route::post('/cautelamaterial/entrega', 'CautelaMaterialController@entrega');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

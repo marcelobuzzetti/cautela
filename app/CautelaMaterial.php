@@ -9,7 +9,7 @@ class CautelaMaterial extends Model
     protected $table = 'cautelamateriais';
     public $timestamps = false;
     /*O que pode ser inserido nesse objeto*/
-    protected $fillable = array('cautela', 'material', 'quantidade', 'data_cautela');
+    protected $fillable = array('cautela', 'material', 'quantidade', 'data_cautela', 'data_entrega');
 
     /*O não pode ser modificado*/
     protected $guarded = ['id'];

@@ -37,6 +37,7 @@
                   <th>Material</th>
                   <th>Data de Cautela</th>
                   <th>Quantidade</th>
+                  <th>Entregar</th>
               </tr>
             </thead>
             <tfoot>
@@ -44,6 +45,7 @@
                   <th>Material</th>
                   <th>Data de Cautela</th>
                   <th>Quantidade</th>
+                  <th>Entregar</th>
               </tr>
             </tfoot>
 
@@ -53,9 +55,50 @@
                 <td>{{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
                 <td>{{$c->quantidade}}</td>
+                @if($c->data_entrega == NULL)
+                <form action="{{ action('CautelaMaterialController@entrega') }}" method="post">
+                  <input name="cautela" value="{{$c->cautela}}" type="hidden">
+                  <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <td><button type="submit" class="btn btn-danger">Entregar</button></td>
+                </form>
+                @else
+                <td>Entregue em {{$c->data_entrega}}</td>
+                @endif
               </tr>
             @endforeach
             </tbody>
           </table>  
       </div>
+     <!-- <div class="row">
+         <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                  <th>Material</th>
+                  <th>Data de Cautela</th>
+                  <th>Quantidade</th>
+                  <th>Entregue em</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                  <th>Material</th>
+                  <th>Data de Cautela</th>
+                  <th>Quantidade</th>
+                  <th>Entregue em</th>
+              </tr>
+            </tfoot>
+
+            <tbody>
+            @foreach ($entregues as $e)
+              <tr>
+                <td>{{$e->nome}}</td>
+                <td>{{$e->data_cautela}}</td>
+                <td>{{$e->quantidade}}</td>
+                <td>{{$e->data_entrega}}</td>
+              </tr>
+            @endforeach
+            </tbody>
+          </table>  
+      </div>-->
 @endsection
