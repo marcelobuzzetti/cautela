@@ -15,6 +15,7 @@
                   <th>Material</th>
                   <th>Data de Cautela</th>
                   <th>Quantidade</th>
+                  <th>Situação</th>
               </tr>
             </thead>
             <tfoot>
@@ -22,6 +23,7 @@
                   <th>Material</th>
                   <th>Data de Cautela</th>
                   <th>Quantidade</th>
+                  <th>Situação</th>
               </tr>
             </tfoot>
 
@@ -31,6 +33,16 @@
                 <td>{{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
                 <td>{{$c->quantidade}}</td>
+                 @if($c->data_entrega == NULL)
+                <form action="{{ action('CautelaMaterialController@entrega') }}" method="post">
+                  <input name="cautela" value="{{$c->cautela}}" type="hidden">
+                  <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <td><button type="submit" class="btn btn-danger">Entregar</button></td>
+                </form>
+                @else
+                <td>Entregue em {{$c->data_entrega}}</td>
+                @endif
               </tr>
             @endforeach
             </tbody>
