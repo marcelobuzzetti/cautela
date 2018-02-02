@@ -51,7 +51,7 @@ class CautelaMaterialController extends Controller
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
-        
+
         $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
@@ -90,5 +90,23 @@ class CautelaMaterialController extends Controller
             and cautelamateriais.cautela = ?',
             array($id));
         return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
+    }
+
+    public function maximo($id){
+         $quantidade = DB::select('select (materiais.quantidade - cautelamateriais.quantidade) as quantidade
+                                FROM materiais, cautelamateriais
+                                where materiais.id = cautelamateriais.material
+                                and materiais.id = ?',
+                                array($id));
+         //return "<script>$('#quantidade').attr('max','$quantidade');</script>";
+ 
+         foreach ($quantidade as $user)
+         {
+            $a = $user->quantidade;
+        }
+        return "<script>$('#quantidade').attr('max','$a');</script>";
+        //return $a;
+
+
     }
 }

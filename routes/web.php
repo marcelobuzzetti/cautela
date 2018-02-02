@@ -65,6 +65,8 @@ Route::post('/cautelamaterial/adiciona', 'CautelaMaterialController@adiciona');
 
 Route::post('/cautelamaterial/entrega', 'CautelaMaterialController@entrega');
 
+Route::get('/cautelamaterial/maximo/id={material}', 'CautelaMaterialController@maximo')->where('material','[0-9]+');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
