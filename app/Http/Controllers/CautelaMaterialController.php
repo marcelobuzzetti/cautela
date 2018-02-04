@@ -93,20 +93,29 @@ class CautelaMaterialController extends Controller
     }
 
     public function maximo($id){
-         $quantidade = DB::select('select (materiais.quantidade - cautelamateriais.quantidade) as quantidade
-                                FROM materiais, cautelamateriais
-                                where materiais.id = cautelamateriais.material
-                                and materiais.id = ?',
-                                array($id));
-         //return "<script>$('#quantidade').attr('max','$quantidade');</script>";
- 
-         foreach ($quantidade as $user)
-         {
-            $a = $user->quantidade;
-        }
-        return "<script>$('#quantidade').attr('max','$a');</script>";
-        //return $a;
+        $cautela = DB::table('cautelamateriais')
+        ->select(DB::raw('sum(cautelamateriais.quantidade) AS quantidade'))
+        ->where('cautelamateriais.material', '=' ,$id)
+        ->whereNull('cautelamateriais.data_entrega')
+        ->groupBy('cautelamateriais.material')
+        ->first();
 
+        if(!$cautela){
+            $cautela = 0;
+        } else {
+            $cautela = $cautela->quantidade;
+        }
+
+        $quantidade = DB::table('materiais')
+        ->selectRaw('materiais.quantidade - ? AS quantidade', [$cautela])
+        ->where('materiais.id', '=' ,$id)
+        ->get();
+
+         foreach ($quantidade as $q) {
+             $quantidade = $q->quantidade;
+         }
+ 
+        return "<script>$('#quantidade').attr('max','$quantidade');</script>";
 
     }
 }
