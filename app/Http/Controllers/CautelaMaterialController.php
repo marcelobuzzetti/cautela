@@ -21,13 +21,13 @@ class CautelaMaterialController extends Controller
         
     	$materiais = DB::select('select *from materiais');
 
-    	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+    	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
     		from cautelamateriais, materiais
     		where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
 		
-		 $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+		 $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
@@ -46,13 +46,13 @@ class CautelaMaterialController extends Controller
         
         $materiais = DB::select('select *from materiais');
 
-        $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+     $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
-
-        $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+        
+         $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
@@ -62,12 +62,13 @@ class CautelaMaterialController extends Controller
 
     public function entrega(){
         $id = Request::input('id');
+        $obs = Request::input('observacao_entrega');
         $today = date("Y-m-d"); 
-        CautelaMaterial::where('id', $id)->update(array('data_entrega' => $today));
-        DB::select('update cautelamateriais
+        CautelaMaterial::where('id', $id)->update(array('data_entrega' => $today, 'observacao_entrega' => $obs));
+        /*DB::select('update cautelamateriais
                     set data_entrega = ?
                     where id = ?',
-                    array($today,$id));
+                    array($today,$id));*/
 
         $id = Request::input('cautela');
         $cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
@@ -78,13 +79,13 @@ class CautelaMaterialController extends Controller
         
         $materiais = DB::select('select *from materiais');
 
-       $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+       $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
         
-         $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+         $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega, observacao_entrega
             from cautelamateriais, materiais
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',

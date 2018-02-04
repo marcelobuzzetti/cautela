@@ -25,6 +25,10 @@
     <input type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
   </div>
   <div class="form-group">
+    <label>Observação</label>
+    <input type="text"  id="observacao_cautela" name="observacao_cautela" placeholder="Digite as alterações encontradas">
+  </div>
+  <div class="form-group">
     <label>Data Cautela</label>
     <input type="date" name="data_cautela">
   </div>
@@ -37,6 +41,8 @@
                   <th>Material</th>
                   <th>Data de Cautela</th>
                   <th>Quantidade</th>
+                  <th>Observação</th>
+                  <th>Alteração</th>
                   <th>Entregar</th>
               </tr>
             </thead>
@@ -45,6 +51,8 @@
                   <th>Material</th>
                   <th>Data de Cautela</th>
                   <th>Quantidade</th>
+                  <th>Observação</th>
+                  <th>Alteração</th>
                   <th>Entregar</th>
               </tr>
             </tfoot>
@@ -55,16 +63,19 @@
                 <td>{{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
                 <td>{{$c->quantidade}}</td>
+                <td>{{$c->observacao_cautela or "Nenhuma Observação"}}</td>
                 @if($c->data_entrega == NULL)
                 <form action="{{ action('CautelaMaterialController@entrega') }}" method="post">
                   <input name="cautela" value="{{$c->cautela}}" type="hidden">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                  <td><input type="text"  id="observacao_entrega" name="observacao_entrega" placeholder="Digite as alterações encontradas"></td>
                 <td><button type="submit" class="btn btn-danger">Entregar</button></td>
-                </form>
                 @else
+                <td>{{$c->observacao_entrega  or "Nenhuma Alteração"}}</td>
                 <td>Entregue em {{$c->data_entrega}}</td>
                 @endif
+                </form>
               </tr>
             @endforeach
             </tbody>
