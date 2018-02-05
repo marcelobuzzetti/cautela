@@ -10,6 +10,11 @@ use Validator;
 
 class PelotaoController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
     public function lista(){
     	$pelotoes = DB::select('select pelotoes.id, pelotoes.nome
     		from pelotoes');

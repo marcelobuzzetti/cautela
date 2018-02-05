@@ -10,6 +10,11 @@ use Validator;
 
 class MilitarController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
     public function lista(){
     	$militares = DB::select('select militares.id, militares.nome, militares.nome_guerra, 
     		pelotoes.nome as pelotao

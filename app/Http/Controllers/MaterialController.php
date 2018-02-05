@@ -7,16 +7,26 @@ use Illuminate\Support\Facades\DB;
 use cautela\Http\Controllers\Controller;
 use cautela\Material;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class MaterialController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	
     public function lista(){
+    	 if(Auth::user()->perfil == 1){
     	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
     		materiais.descricao, materiais.quantidade, reservas.nome as reserva
     		from materiais,reservas 
     		where materiais.reserva = reservas.id');
 		
 		return view('material.listagem')->withMateriais($materiais);
+	}else{
+		return view('inicio');
+	}
 	}
 
 	public function novo(){

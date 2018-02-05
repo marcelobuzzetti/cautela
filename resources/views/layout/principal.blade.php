@@ -47,7 +47,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/materiais">Lista de Materiais</a>
+            @if(Auth::user()->perfil == 1)
             <a class="dropdown-item" href="/materiais/novo">Adicionar Material</a>
+            @endif
         </div>
       </li>
        <li class="nav-item dropdown">
@@ -81,7 +83,7 @@
       <li>
         <a class="nav-link" href="/registrar">Registrar Usuário</a>
       </li>
-          @endif
+      @endif
       </ul>
        <ul class="navbar-nav ">
       <li class="nav-item dropdown my-2 my-lg-0">

@@ -11,6 +11,11 @@ use Validator;
 
 class CautelaMaterialController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function novo(){
         $id = Request::input('id');
     	$cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 

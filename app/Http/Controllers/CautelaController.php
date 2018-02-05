@@ -10,6 +10,11 @@ use Validator;
 
 class CautelaController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
     public function lista(){
     	$cautelas = DB::select('select cautelas.id, militares.nome_guerra as nome, data_cautela
     		from cautelas,militares
