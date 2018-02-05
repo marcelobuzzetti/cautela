@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 /*Materiais*/
 Route::get('/materiais', 'MaterialController@lista');
@@ -66,6 +66,11 @@ Route::post('/cautelamaterial/adiciona', 'CautelaMaterialController@adiciona');
 Route::post('/cautelamaterial/entrega', 'CautelaMaterialController@entrega');
 
 Route::get('/cautelamaterial/maximo/id={material}', 'CautelaMaterialController@maximo')->where('material','[0-9]+');
+
+/*Usuario*/
+Route::get('/registrar', 'RegistroController@novo');
+
+Route::post('/registrar/novo', 'RegistroController@adiciona');
 
 Auth::routes();
 
