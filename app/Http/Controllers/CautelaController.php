@@ -16,7 +16,7 @@ class CautelaController extends Controller
 	}
 
     public function lista(){
-    	$cautelas = DB::select('select cautelas.id, militares.nome_guerra as nome, data_cautela
+    	$cautelas = DB::select('select cautelas.id, militares.nome_guerra as nome, data_cautela, data_entrega
     		from cautelas,militares
     		where cautelas.militar = militares.id');
 		
@@ -31,6 +31,14 @@ class CautelaController extends Controller
 
 	public function adiciona(){
     	Cautela::create(Request::all());
+		return redirect()->action('CautelaController@lista');
+	}
+
+	public function encerra(){
+		$id = Request::input('id');
+        $today = date("Y-m-d"); 
+        Cautela::where('id', $id)->update(array('data_entrega' => $today));
+
 		return redirect()->action('CautelaController@lista');
 	}
 

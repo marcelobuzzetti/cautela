@@ -54,6 +54,8 @@ Route::get('/cautelas/novo', 'CautelaController@novo');
 
 Route::post('/cautelas/adiciona', 'CautelaController@adiciona');
 
+Route::post('/cautelas/encerra', 'CautelaController@encerra');
+
 Route::post('/cautelas/apaga', 'CautelaController@apaga');
 
 Route::post('/cautelas/detalhes', 'CautelaController@detalhes');

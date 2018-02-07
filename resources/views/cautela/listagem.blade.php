@@ -10,6 +10,7 @@
                   <th>Data da Cautela</th>
                   <th>Cautelar Material</th>
                   <th>Visualizar Cautela</th>
+                  <th>Encerrar Cautela</th>
                   <th>Apagar</th>
               </tr>
             </thead>
@@ -20,6 +21,7 @@
                   <th>Data da Cautela</th>
                   <th>Cautelar Material</th>
                   <th>Visualizar Cautela</th>
+                  <th>Encerrar Cautela</th>
                   <th>Apagar</th>
               </tr>
             </tfoot>
@@ -40,10 +42,19 @@
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <td><button type="submit" class="btn btn-info">Visualizar Cautela</button></td>
               </form>
+              @if($c->data_entrega)
+               <td>Encerrada em {{$c->data_entrega}}</td>
+               @else
+              <form action="{{ action('CautelaController@encerra') }}" method="post">
+                  <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <td><button type="submit" class="btn btn">Encerrar Cautela</button></td>
+              </form>
+              @endif
                 <form action="{{ action('CautelaController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-danger">Apagar</button></td>
+                <td><button type="submit" class="btn btn-danger"  @if(Auth::user()->perfil != 1) disabled @endif>Apagar</button></td>
               </form>
               </tr>
             @endforeach

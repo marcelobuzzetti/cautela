@@ -17,26 +17,27 @@ class MaterialController extends Controller
 	}
 	
     public function lista(){
-    	 if(Auth::user()->perfil == 1){
     	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
     		materiais.descricao, materiais.quantidade, reservas.nome as reserva
     		from materiais,reservas 
     		where materiais.reserva = reservas.id');
 		
 		return view('material.listagem')->withMateriais($materiais);
-	}else{
-		return view('inicio');
-	}
 	}
 
 	public function novo(){
+		if(Auth::user()->perfil == 1){
 		$reservas = DB::select('select * from reservas');
 
 		return view('material.novo')->withReservas($reservas);
+		}else{
+			return view('inicio');
+		}
 	}
 
 	public function adiciona(){
 
+		if(Auth::user()->perfil == 1){
 		if (Request::input('id')){
 			Material::find(Request::input('id'))->update(Request::all());
 			return redirect()->action('MaterialController@lista')->withInput();
@@ -44,9 +45,11 @@ class MaterialController extends Controller
 			Material::create(Request::all());
 			return redirect()->action('MaterialController@lista')->withInput(Request::only('nome'));
 		}
-		
-			
-		}
+			return view('material.listagem')->withMateriais($materiais);
+		}else{
+			return view('inicio');
+		}		
+	}
 
 	public function altera($id){
 		$material = Material::find($id);
