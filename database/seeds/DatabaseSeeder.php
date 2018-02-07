@@ -94,7 +94,7 @@ class CautelaTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into cautelas(militar, data_cautela,usuario_cautela)
+		DB::insert('insert into cautelas(militar, data_cautela, usuario_cautela)
 			values (?,?,?)',
 			array(1,"2018-01-02",1));
 	}

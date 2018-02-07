@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use cautela\Http\Controllers\Controller;
 use cautela\CautelaMaterial;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class CautelaMaterialController extends Controller
 {
@@ -42,7 +43,9 @@ class CautelaMaterialController extends Controller
 
     public function adiciona(){
         $id = Request::input('cautela');
-        CautelaMaterial::create(Request::all());
+        $cautela = Request::all();
+        $cautela['usuario_cautela'] = Auth::user()->id;
+        CautelaMaterial::create($cautela);
         $cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
             from cautelas,militares
             where cautelas.militar = militares.id
@@ -69,7 +72,7 @@ class CautelaMaterialController extends Controller
         $id = Request::input('id');
         $obs = Request::input('observacao_entrega');
         $today = date("Y-m-d"); 
-        CautelaMaterial::where('id', $id)->update(array('data_entrega' => $today, 'observacao_entrega' => $obs));
+        CautelaMaterial::where('id', $id)->update(array('data_entrega' => $today, 'observacao_entrega' => $obs, 'usuario_entrega' => Auth::user()->id));
         /*DB::select('update cautelamateriais
                     set data_entrega = ?
                     where id = ?',
