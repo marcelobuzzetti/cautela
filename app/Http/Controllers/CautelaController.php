@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use cautela\Http\Controllers\Controller;
 use cautela\Cautela;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 
 class CautelaController extends Controller
 {
@@ -30,14 +31,16 @@ class CautelaController extends Controller
 	}
 
 	public function adiciona(){
-    	Cautela::create(Request::all());
+		$cautela = Request::all();
+		$cautela['usuario_cautela'] = Auth::user()->id;
+    	Cautela::create($cautela);
 		return redirect()->action('CautelaController@lista');
 	}
 
 	public function encerra(){
 		$id = Request::input('id');
         $today = date("Y-m-d"); 
-        Cautela::where('id', $id)->update(array('data_entrega' => $today));
+        Cautela::where('id', $id)->update(array('data_entrega' => $today,'usuario_entrega' => Auth::user()->id));
 
 		return redirect()->action('CautelaController@lista');
 	}

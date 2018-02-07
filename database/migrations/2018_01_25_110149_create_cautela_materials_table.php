@@ -20,7 +20,9 @@ class CreateCautelaMaterialsTable extends Migration
             $table->integer('quantidade');
             $table->date('data_cautela')->nullable();
             $table->string('observacao_cautela')->nullable();
+            $table->integer('usuario_cautela')->nullable();
             $table->date('data_entrega')->nullable();
+            $table->integer('usuario_entrega')->nullable();
             $table->string('observacao_entrega')->nullable();
             $table->timestamps();
         });

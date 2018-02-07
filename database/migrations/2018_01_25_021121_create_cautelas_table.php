@@ -17,7 +17,9 @@ class CreateCautelasTable extends Migration
             $table->increments('id');
             $table->integer('militar');
             $table->date('data_cautela')->nullable();
+            $table->integer('usuario_cautela')->nullable();
             $table->date('data_entrega')->nullable();
+            $table->integer('usuario_entrega')->nullable();
             $table->timestamps();
         });
     }
