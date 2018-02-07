@@ -40,9 +40,23 @@ class CautelaController extends Controller
 	public function encerra(){
 		$id = Request::input('id');
         $today = date("Y-m-d"); 
-        Cautela::where('id', $id)->update(array('data_entrega' => $today,'usuario_entrega' => Auth::user()->id));
+        $count = DB::select('select count(id) as count from cautelamateriais where data_entrega IS NULL and cautela = ?',
+        	array($id));
 
-		return redirect()->action('CautelaController@lista');
+        foreach ($count as $c) {
+				$count = $c->count;
+			}
+
+        if($count > 0){
+
+			return redirect()->action('CautelaController@lista')->with('status', 'Cautela tem Materiais pendentes!');;        	
+
+        }else{
+
+        	Cautela::where('id', $id)->update(array('data_entrega' => $today,'usuario_entrega' => Auth::user()->id));
+
+			return redirect()->action('CautelaController@lista');
+		}
 	}
 
 	public function apaga(){

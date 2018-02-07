@@ -1,6 +1,11 @@
 @extends('layout.principal')
 
 @section('content')
+@if (session('status'))
+    <div class="alert alert-danger">
+        {{ session('status') }}
+    </div>
+@endif
 <div class="row">
          <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>
