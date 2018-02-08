@@ -22,8 +22,9 @@ class RegistroController extends Controller
 		}
 
 		public function adiciona(){
-
-			User::create(Request::all());
+			$usuario = Request::all();
+			$usuario['password'] = bcrypt(Request::input('password'));
+			User::create($usuario);
 			return view('inicio');
 		}
 }
