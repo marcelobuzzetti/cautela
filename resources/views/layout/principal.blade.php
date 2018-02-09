@@ -86,7 +86,7 @@
       </style>
       </head>
       <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="/">Cautela</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -95,7 +95,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         @auth
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown {{ Request::path() == 'materiais/novo' || Request::path() == 'materiais' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Materiais
         </a>
@@ -106,7 +106,7 @@
             @endif
         </div>
       </li>
-       <li class="nav-item dropdown">
+       <li class="nav-item dropdown {{ Request::path() == 'cautelas/novo' || Request::path() == 'cautelas' ? 'active' : '' }} ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Cautelas
         </a>
@@ -115,7 +115,7 @@
             <a class="dropdown-item" href="/cautelas/novo">Adicionar Cautela</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown {{ Request::path() == 'pelotoes/novo' || Request::path() == 'pelotoes' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Pelotões
         </a>
@@ -124,7 +124,7 @@
            <a class="dropdown-item" href="/pelotoes/novo">Adicionar Pelotão</a>
         </div>
       </li>
-       <li class="nav-item dropdown">
+       <li class="nav-item dropdown {{ Request::path() == 'militares/novo' || Request::path() == 'militares' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Militares
         </a>
@@ -135,7 +135,7 @@
       </li>
       @if(Auth::user()->perfil == 1)
       <li>
-        <a class="nav-link" href="/registrar">Registrar Usuário</a>
+        <a class="nav-link {{ Request::path() == 'registrar' ? 'active' : '' }}" href="/registrar">Registrar Usuário</a>
       </li>
       @endif
       </ul>
