@@ -33,11 +33,25 @@ class MilitarController extends Controller
 	public function adiciona(){
 		
 		if (Request::input('id')){
-			
+
 			$pelotao = Pelotao::find(Request::input('pelotao'));
-			$militar['pelotao'] = $pelotao['id'];
-			Militar::find(Request::input('id'))->update($militar);
-			return redirect()->action('MilitarController@lista')->withInput();
+
+			if($pelotao){
+				$militar = Request::all();
+				$militar['pelotao'] = $pelotao['id'];
+				Militar::find(Request::input('id'))->update($militar);
+				return redirect()->action('MilitarController@lista')->withInput();
+			} else {
+				$pelotao['nome'] = Request::input('pelotao');
+				Pelotao::create($pelotao);
+				$a = $pelotao['nome'];
+				$pelotao = Pelotao::find($a);				
+				$militar = Request::all();
+				$militar['pelotao'] = $pelotao['id'];
+				Militar::find(Request::input('id'))->update($militar);
+				return redirect()->action('MilitarController@lista')->withInput();
+			}
+
 		} else {
 			$pelotao = Pelotao::find(Request::input('pelotao'));
 			if($pelotao){
@@ -48,7 +62,8 @@ class MilitarController extends Controller
 			} else {
 				$pelotao['nome'] = Request::input('pelotao');
 				Pelotao::create($pelotao);
-				$pelotao = Pelotao::find($pelotao);
+				$a = $pelotao['nome'];
+				$pelotao = Pelotao::find($a);	
 				$militar = Request::all();
 				$militar['pelotao'] = $pelotao['id'];
 				Militar::create($militar);
