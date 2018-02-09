@@ -74,8 +74,23 @@ class MilitarController extends Controller
 
 	public function adicionacautela(){
 
-			Militar::create(Request::all());
-			return redirect()->action('CautelaController@novo');
+			$pelotao = Pelotao::find(Request::input('pelotao'));
+			if($pelotao){
+				$militar = Request::all();
+				$militar['pelotao'] = $pelotao['id'];
+				Militar::create($militar);
+				return redirect()->action('CautelaController@novo');	
+			} else {
+				$pelotao['nome'] = Request::input('pelotao');
+				Pelotao::create($pelotao);
+				$a = $pelotao['nome'];
+				$pelotao = Pelotao::find($a);	
+				$militar = Request::all();
+				$militar['pelotao'] = $pelotao['id'];
+				Militar::create($militar);
+				return redirect()->action('CautelaController@novo');
+			}
+			
 	}
 
 	public function altera($id){
