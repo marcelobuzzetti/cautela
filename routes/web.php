@@ -32,6 +32,8 @@ Route::get('/militares/novo', 'MilitarController@novo');
 
 Route::post('/militares/adiciona', 'MilitarController@adiciona');
 
+Route::post('/militares/adicionacautela', 'MilitarController@adicionacautela');
+
 Route::get('/militares/altera/{id}', 'MilitarController@altera')->where('id','[0-9]+');
 
 Route::post('/militares/apaga', 'MilitarController@apaga');
@@ -46,6 +48,8 @@ Route::post('/pelotoes/adiciona', 'PelotaoController@adiciona');
 Route::get('/pelotoes/altera/{id}', 'PelotaoController@altera')->where('id','[0-9]+');
 
 Route::post('/pelotoes/apaga', 'PelotaoController@apaga');
+
+Route::get('/militar/pelotao', 'PelotaoController@autocomplete');
 
 /*Cautela*/
 Route::get('/cautelas', 'CautelaController@lista');

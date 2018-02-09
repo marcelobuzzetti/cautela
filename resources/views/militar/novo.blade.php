@@ -12,14 +12,9 @@
     <label>Nome de Guerra</label>
     <input type="text" class="form-control" id="nome_guerra" name="nome_guerra" placeholder="Digite o Nome de Guerra" required="required" value="{{ old('nome_guerra') }}">
   </div>
-  <div class="form-group">
+  <div class="form-group" >
     <label>Pelotão</label>
-    <select class="custom-select" id="pelotao" name="pelotao" required="required">
-      <option value="" selected disabled>Selecione um Pelotão</option>
-      @foreach ($pelotoes as $p)
-        <option value="{{$p->id}}">{{$p->nome}}</option>
-      @endforeach
-    </select>
+    <input type="text" class="form-control" id="pelotao" name="pelotao" placeholder="Digite o pelotao do Militar" required="required" value="{{ old('pelotao') }}">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

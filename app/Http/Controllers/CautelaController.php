@@ -26,8 +26,9 @@ class CautelaController extends Controller
 
 	public function novo(){
     	$militares = DB::select('select * from militares');
+    	$pelotoes = DB::select('select * from pelotoes');
 		
-		return view('cautela.novo')->withMilitares($militares);
+		return view('cautela.novo')->withMilitares($militares)->withPelotoes($pelotoes);
 	}
 
 	public function adiciona(){

@@ -52,4 +52,20 @@ class PelotaoController extends Controller
 		return redirect()->action('PelotaoController@lista');
 
 	}
+
+	public function autocomplete(){
+	$term = Request::input('term');
+	
+	$results = array();
+	
+	$queries = DB::table('pelotoes')
+		->where('nome', 'LIKE', '%'.$term.'%')
+		->get();
+	
+	foreach ($queries as $query)
+	{
+	    $results[] = [ 'id' => $query->id, 'value' => $query->nome ];
+	}
+	return $results;
+	}
 }

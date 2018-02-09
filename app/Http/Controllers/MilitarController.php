@@ -6,6 +6,7 @@ use Request;
 use Illuminate\Support\Facades\DB;
 use cautela\Http\Controllers\Controller;
 use cautela\Militar;
+use cautela\Pelotao;
 use Validator;
 
 class MilitarController extends Controller
@@ -25,27 +26,49 @@ class MilitarController extends Controller
 	}
 
 	public function novo(){
-		$pelotoes = DB::select('select * from pelotoes');
 
-		return view('militar.novo')->withPelotoes($pelotoes);
+		return view('militar.novo');
 	}
 
 	public function adiciona(){
-
+		
 		if (Request::input('id')){
-			Militar::find(Request::input('id'))->update(Request::all());
+			
+			$pelotao = Pelotao::find(Request::input('pelotao'));
+			$militar['pelotao'] = $pelotao['id'];
+			Militar::find(Request::input('id'))->update($militar);
 			return redirect()->action('MilitarController@lista')->withInput();
 		} else {
-			Militar::create(Request::all());
-			return redirect()->action('MilitarController@lista')->withInput(Request::only('nome'));
+			$pelotao = Pelotao::find(Request::input('pelotao'));
+			if($pelotao){
+				$militar = Request::all();
+				$militar['pelotao'] = $pelotao['id'];
+				Militar::create($militar);
+				return redirect()->action('MilitarController@lista')->withInput(Request::only('nome'));	
+			} else {
+				$pelotao['nome'] = Request::input('pelotao');
+				Pelotao::create($pelotao);
+				$pelotao = Pelotao::find($pelotao);
+				$militar = Request::all();
+				$militar['pelotao'] = $pelotao['id'];
+				Militar::create($militar);
+				return redirect()->action('MilitarController@lista')->withInput(Request::only('nome'));	
+			}
 		}
+	}
+
+	public function adicionacautela(){
+
+			Militar::create(Request::all());
+			return redirect()->action('CautelaController@novo');
 	}
 
 	public function altera($id){
 		$militar = Militar::find($id);
-		$pelotoes = DB::select('select * from pelotoes');
+		$pelotao = Pelotao::find($militar['pelotao']);
+		$militar['pelotao'] = $pelotao['nome'];
 
-		return view('militar.atualiza')->withM($militar)->withP($pelotoes);
+		return view('militar.atualiza')->withM($militar);
 	}
 
 	public function apaga(){

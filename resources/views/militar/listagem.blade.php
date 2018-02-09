@@ -32,7 +32,7 @@
                 <form action="{{ action('MilitarController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$m->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-danger">Apagar</button></td>
+                <td><button type="submit" class="btn btn-danger" @if(Auth::user()->perfil != 1) disabled @endif>Apagar</button></td>
               </form>
               </tr>
             @endforeach
