@@ -18,16 +18,19 @@ class MilitarController extends Controller
 	
     public function lista(){
     	$militares = DB::select('select militares.id, militares.nome, militares.nome_guerra, 
-    		pelotoes.nome as pelotao
-    		from militares,pelotoes 
-    		where pelotoes.id = militares.pelotao');
+    		pelotoes.nome as pelotao, postograd.patente as patente
+    		from militares,pelotoes,postograd
+    		where pelotoes.id = militares.pelotao
+    		and militares.patente = postograd.id');
 		
 		return view('militar.listagem')->withMilitares($militares);
 	}
 
 	public function novo(){
 
-		return view('militar.novo');
+		$posto = DB::select('select * from postograd');
+
+		return view('militar.novo')->withPostos($posto);
 	}
 
 	public function adiciona(){
@@ -97,8 +100,9 @@ class MilitarController extends Controller
 		$militar = Militar::find($id);
 		$pelotao = Pelotao::find($militar['pelotao']);
 		$militar['pelotao'] = $pelotao['nome'];
+		$postos = DB::select('select * from postograd');
 
-		return view('militar.atualiza')->withM($militar);
+		return view('militar.atualiza')->withM($militar)->withPostos($postos);
 	}
 
 	public function apaga(){

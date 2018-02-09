@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMilitarsTable extends Migration
+class CreatePostoGradsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateMilitarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('militares', function (Blueprint $table) {
+        Schema::create('postograd', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->integer('patente');
-            $table->string('nome_guerra');
-            $table->integer('pelotao');
+            $table->string('patente');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateMilitarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('militares');
+        Schema::dropIfExists('postograd');
     }
 }

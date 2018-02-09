@@ -6,6 +6,7 @@
             <thead>
               <tr>
                   <th>Nome</th>
+                  <th>Posto/Grad</th>
                   <th>Nome de Guerra</th>
                   <th>Pelotão</th>
                   <th>Atualizar</th>
@@ -15,6 +16,7 @@
             <tfoot>
               <tr>
                   <th>Nome</th>
+                  <th>Posto/Grad</th>
                   <th>Nome de Guerra</th>
                   <th>Pelotão</th>
                   <th>Atualizar</th>
@@ -26,6 +28,7 @@
             @foreach ($militares as $m)
               <tr>
                 <td>{{$m->nome}}</td>
+                <td>{{$m->patente}}</td>
                 <td>{{$m->nome_guerra}}</td>
                 <td>{{$m->pelotao}}</td>
                 <td><a class="btn btn-success" href="{{ action('MilitarController@altera', $m->id ) }}">Atualizar</a></td>

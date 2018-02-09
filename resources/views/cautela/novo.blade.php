@@ -1,11 +1,13 @@
 @extends('layout.principal')
 
 @section('content')
-
+<blockquote class="blockquote text-center">
+  <p class="mb-0">Cadastre a cautela</p>
+</blockquote>
 <form action="{{ action('CautelaController@adiciona') }}" method="post">
   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
   <div class="form-group">
-    <p><label>Militar</label></p>
+    <label>Militar</label>
     <select class="custom-select" id="militar" name="militar" required="required">
       <option value="" selected disabled>Selecione um Militar</option>
       @foreach ($militares as $m)
@@ -15,13 +17,15 @@
   </div>
   <div class="form-group">
     <label>Data</label>
-    <input type="date" name="data_cautela">
+    <input type="date" name="data_cautela" class="form-control">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <br>
-<p>Ou</p>
-<p>Cadastre um Militar</p>
+<blockquote class="blockquote text-center">
+  <p class="mb-0">Não encontrou o militar na lista acima?</p>
+  <p class="mb-0">Cadastre-o no formulário abaixo</p>
+</blockquote>
 <form action="{{ action('MilitarController@adicionacautela') }}" method="post">
   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
   <div class="form-group" >

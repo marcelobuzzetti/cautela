@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MilitarTableSeeder::class);  
         $this->call(CautelaTableSeeder::class);
         $this->call(CautelaMateriaisTableSeeder::class);
+        $this->call(PostoGradTableSeeder::class);
     }
 }
 
@@ -38,9 +39,9 @@ class MilitarTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into militares(nome, nome_guerra,pelotao)
-			values (?,?,?)',
-			array('Marcelo Aparecido Ferreira Silva','Ferreira', 1));
+		DB::insert('insert into militares(nome, patente, nome_guerra,pelotao)
+			values (?,?,?,?)',
+			array('Marcelo Aparecido Ferreira Silva',4,'Ferreira', 1));
 	}
 }
 
@@ -117,6 +118,77 @@ class UsuarioTableSeeder extends Seeder
 		DB::insert('insert into users(name, email, password, perfil)
 			values (?,?,?,?)',
 			array('Marcelo', 'marcelobuzzetti@gmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', '1'));
+	}
+}
+
+class PostoGradTableSeeder extends Seeder
+{
+
+	public function run (){
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Sd'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Cb'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('3º Sgt'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('2º Sgt'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('1º Sgt'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('STen'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Asp'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('2º Ten'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('1º Ten'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Cap'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Maj'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Ten Cel'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Cel'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Gen Bda'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Gen Div'));
+
+		DB::insert('insert into postograd(patente)
+			values (?)',
+			array('Gen Ex'));
 	}
 
 }

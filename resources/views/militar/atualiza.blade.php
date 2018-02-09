@@ -10,6 +10,15 @@
     <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome do Militar" required="required" value="{{$m->nome}}">
   </div>
   <div class="form-group">
+    <label>Posto/Grad</label>
+    <select class="custom-select" id="patente" name="patente" required="required">
+      <option value="" disabled>Selecione o Posto/Grad</option>
+      @foreach ($postos as $p)
+        <option value="{{$p->id}}" {{ $p->id == $m->patente ? "selected" : ''}}>{{$p->patente}}</option>
+      @endforeach
+    </select>
+  </div>
+  <div class="form-group">
     <label>Nome de Guerra</label>
     <input type="text" class="form-control" id="nome_guerra" name="nome_guerra" placeholder="Digite o Nome de Guerra" required="required" value="{{$m->nome_guerra}}">
   </div>

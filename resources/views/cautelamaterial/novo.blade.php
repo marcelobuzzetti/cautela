@@ -1,14 +1,15 @@
 @extends('layout.principal')
 
 @section('content')
-
+<blockquote class="blockquote text-center">
+  <p class="mb-0">Cautela de Material</p>
+</blockquote>
 <form action="{{ action('CautelaMaterialController@adiciona') }}" method="post">
   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
   <div class="form-group">
-    <label>Cautela</label>
     @foreach ($cautela as $c)
     <input name="cautela" value="{{$c->id}}" type="hidden">
-    <p>Número {{$c->id}} - Militar {{$c->nome}}</p>
+    <p>Cautela nº {{$c->id}} - Militar {{$c->nome}}</p>
     @endforeach
   </div>
   <div class="form-group">
@@ -22,18 +23,21 @@
   </div>
    <div class="form-group">
     <label>Quantidade</label>
-    <input type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
+    <input  class="form-control" type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
   </div>
   <div class="form-group">
     <label>Observação</label>
-    <input type="text"  id="observacao_cautela" name="observacao_cautela" placeholder="Digite as alterações encontradas">
+    <input  class="form-control" type="text"  id="observacao_cautela" name="observacao_cautela" placeholder="Digite as alterações encontradas">
   </div>
   <div class="form-group">
     <label>Data Cautela</label>
-    <input type="date" name="data_cautela">
+    <input  class="form-control" type="date" name="data_cautela">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<blockquote class="blockquote text-center">
+  <p class="mb-0">Relação de Materiais Cautelados</p>
+</blockquote>
 <div class="row">
          <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>
@@ -69,7 +73,7 @@
                   <input name="cautela" value="{{$c->cautela}}" type="hidden">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                  <td><input type="text"  id="observacao_entrega" name="observacao_entrega" placeholder="Digite as alterações encontradas"></td>
+                  <td><input class="form-control" type="text"  id="observacao_entrega" name="observacao_entrega" placeholder="Digite as alterações encontradas"></td>
                 <td><button type="submit" class="btn btn-danger">Entregar</button></td>
                 @else
                 <td>{{$c->observacao_entrega  or "Nenhuma Alteração"}}</td>

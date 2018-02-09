@@ -4,12 +4,12 @@ namespace cautela;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Militar extends Model
+class PostoGrad extends Model
 {
-    protected $table = 'militares';
+    protected $table = 'postograd';
     public $timestamps = false;
     /*O que pode ser inserido nesse objeto*/
-    protected $fillable = array('nome', 'patente', 'nome_guerra','pelotao');
+    protected $fillable = array('patente');
 
     /*O não pode ser modificado*/
     protected $guarded = ['id'];
