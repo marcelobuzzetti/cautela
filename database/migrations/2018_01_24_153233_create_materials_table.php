@@ -19,7 +19,7 @@ class CreateMaterialsTable extends Migration
             $table->decimal('valor', 5, 2);
             $table->string('descricao');
             $table->integer('quantidade');
-            $table->integer('reserva');
+            $table->integer('reserva')->unsigned();
             $table->timestamps();
         });
     }

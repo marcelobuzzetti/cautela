@@ -15,11 +15,11 @@ class CreateCautelasTable extends Migration
     {
         Schema::create('cautelas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('militar');
+            $table->integer('militar')->unsigned();
             $table->date('data_cautela')->nullable();
-            $table->integer('usuario_cautela')->nullable();
+            $table->integer('usuario_cautela')->nullable()->unsigned();
             $table->date('data_entrega')->nullable();
-            $table->integer('usuario_entrega')->nullable();
+            $table->integer('usuario_entrega')->nullable()->unsigned();
             $table->timestamps();
         });
     }

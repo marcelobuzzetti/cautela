@@ -49,7 +49,7 @@ class CautelaController extends Controller
 
         if($count > 0){
 
-			return redirect()->action('CautelaController@lista')->with('status', 'Cautela tem Materiais pendentes!');;        	
+			return redirect()->action('CautelaController@lista')->with('status', 'Cautela tem Materiais pendentes!');
 
         }else{
 
@@ -60,10 +60,23 @@ class CautelaController extends Controller
 	}
 
 	public function apaga(){
-		$cautela = Cautela::find(Request::input('id'));
-		$cautela->delete();
+		$id = Request::input('id');
+		$count = DB::select('select count(id) as count from cautelamateriais where cautela = ?',
+        	array($id));
 
+		foreach ($count as $c) {
+				$count = $c->count;
+		}
+
+        if($count > 0){
+        	return redirect()->action('CautelaController@lista')->with('status', 'Essa cautela não pode ser apagada!');
+        } else {
+
+		$cautela = Cautela::find($id);
+		$cautela->delete();
 		return redirect()->action('CautelaController@lista');
+
+		}
 	}
 
 	public function detalhes(){

@@ -15,14 +15,14 @@ class CreateCautelaMaterialsTable extends Migration
     {
         Schema::create('cautelamateriais', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cautela');
-            $table->integer('material');
+            $table->integer('cautela')->unsigned();
+            $table->integer('material')->unsigned();
             $table->integer('quantidade');
             $table->date('data_cautela')->nullable();
             $table->string('observacao_cautela')->nullable();
-            $table->integer('usuario_cautela')->nullable();
+            $table->integer('usuario_cautela')->nullable()->unsigned();
             $table->date('data_entrega')->nullable();
-            $table->integer('usuario_entrega')->nullable();
+            $table->integer('usuario_entrega')->nullable()->unsigned();
             $table->string('observacao_entrega')->nullable();
             $table->timestamps();
         });
