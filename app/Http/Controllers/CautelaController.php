@@ -82,11 +82,13 @@ class CautelaController extends Controller
 
 	public function detalhes(){
 		$id = Request::input('id');
-		$cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
-    		from cautelas,militares
+		$cautela = DB::select('select cautelas.id, postograd.patente, militares.nome_guerra as nome 
+    		from cautelas,militares, postograd
     		where cautelas.militar = militares.id
+    		and militares.patente = postograd.id
             and cautelas.id = ?',
         array($id));
+
 
     	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
     		from cautelamateriais, materiais

@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>Seja Bem-vindo ao sistema de Cautelas</h1>
+	<div class="jumbotron">
+		<h1 class="display-4">Seja Bem-vindo ao sistema de Cautelas</h1>
+	</div>
 </div>
 @endsection
