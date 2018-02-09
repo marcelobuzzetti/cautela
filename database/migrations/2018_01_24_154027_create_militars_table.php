@@ -17,7 +17,7 @@ class CreateMilitarsTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('nome_guerra');
-            $table->integer('pelotao')->unsigned();
+            $table->integer('pelotao');
             $table->timestamps();
         });
     }
