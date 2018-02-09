@@ -37,11 +37,15 @@
                 <td>{{$c->id}}</td>
                 <td>{{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
+                @if($c->data_entrega)
+               <td>Cautela Encerrada</td>
+               @else
                  <form action="{{ action('CautelaMaterialController@novo') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-success">Cautelar Material</button></td>
+                <td><button type="submit" class="btn btn-success" >Cautelar Material</button></td>
               </form>
+              @endif
                <form action="{{ action('CautelaController@detalhes') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
