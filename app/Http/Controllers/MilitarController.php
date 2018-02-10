@@ -8,6 +8,7 @@ use cautela\Http\Controllers\Controller;
 use cautela\Militar;
 use cautela\Pelotao;
 use Validator;
+use Illuminate\Database\QueryException;
 
 class MilitarController extends Controller
 {
@@ -22,7 +23,7 @@ class MilitarController extends Controller
     		from militares,pelotoes,postograd
     		where pelotoes.id = militares.pelotao
     		and militares.patente = postograd.id
-    		and active = 1');
+    		and militares.active = 1');
 		
 		return view('militar.listagem')->withMilitares($militares);
 	}
@@ -41,6 +42,11 @@ class MilitarController extends Controller
 			$pelotao = Pelotao::find(Request::input('pelotao'));
 
 			if($pelotao){
+				if($pelotao['active'] == 2){
+					DB::table('pelotoes')
+		            ->where('id', Request::input('pelotao'))            
+		            ->update(['active' => 1]);
+				}
 				$militar = Request::all();
 				$militar['pelotao'] = $pelotao['id'];
 				Militar::find(Request::input('id'))->update($militar);
@@ -59,6 +65,11 @@ class MilitarController extends Controller
 		} else {
 			$pelotao = Pelotao::find(Request::input('pelotao'));
 			if($pelotao){
+				if($pelotao['active'] == 2){
+					DB::table('pelotoes')
+		            ->where('id', Request::input('pelotao'))            
+		            ->update(['active' => 1]);
+				}
 				$militar = Request::all();
 				$militar['pelotao'] = $pelotao['id'];
 				Militar::create($militar);
@@ -108,7 +119,17 @@ class MilitarController extends Controller
 
 	public function apaga(){
 		$militar = Militar::find(Request::input('id'));
+		try {
+
 		$militar->delete();
+
+		} catch (QueryException $e) {
+
+		DB::table('militares')
+            ->where('id', Request::input('id'))
+            ->update(['active' => 2]);
+
+		}
 
 		return redirect()->action('MilitarController@lista');
 

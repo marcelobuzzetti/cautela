@@ -16,9 +16,9 @@ class CreateMilitarsTable extends Migration
         Schema::create('militares', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->integer('patente');
+            $table->integer('patente')->unsigned();
             $table->string('nome_guerra');
-            $table->integer('pelotao');
+            $table->integer('pelotao')->unsigned();
             $table->integer('active')->default(1);
             $table->timestamps();
         });

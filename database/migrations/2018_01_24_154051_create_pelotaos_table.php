@@ -16,6 +16,7 @@ class CreatePelotaosTable extends Migration
         Schema::create('pelotoes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }

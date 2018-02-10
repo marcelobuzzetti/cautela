@@ -8,6 +8,7 @@ use cautela\Http\Controllers\Controller;
 use cautela\Material;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 
 class MaterialController extends Controller
 {
@@ -76,7 +77,18 @@ class MaterialController extends Controller
 
 	public function apaga(){
 		$material = Material::find(Request::input('id'));
+		
+		try {
+
 		$material->delete();
+
+		} catch (QueryException $e) {
+
+		DB::table('materiais')
+            ->where('id', Request::input('id'))
+            ->update(['active' => 2]);
+
+		}
 
 		return redirect()->action('MaterialController@lista');
 

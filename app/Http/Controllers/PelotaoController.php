@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use cautela\Http\Controllers\Controller;
 use cautela\Pelotao;
 use Validator;
+use Illuminate\Database\QueryException;
 
 class PelotaoController extends Controller
 {
@@ -17,7 +18,8 @@ class PelotaoController extends Controller
 	
     public function lista(){
     	$pelotoes = DB::select('select pelotoes.id, pelotoes.nome
-    		from pelotoes');
+    		from pelotoes
+    		where active = 1');
 		
 		return view('pelotao.listagem')->withPelotoes($pelotoes);
 	}
@@ -47,7 +49,17 @@ class PelotaoController extends Controller
 
 	public function apaga(){
 		$pelotao = Pelotao::find(Request::input('id'));
+		try {
+
 		$pelotao->delete();
+
+		} catch (QueryException $e) {
+
+		DB::table('pelotoes')
+            ->where('id', Request::input('id'))
+            ->update(['active' => 2]);
+
+		}
 
 		return redirect()->action('PelotaoController@lista');
 
@@ -60,6 +72,7 @@ class PelotaoController extends Controller
 	
 	$queries = DB::table('pelotoes')
 		->where('nome', 'LIKE', '%'.$term.'%')
+		->where('active',1)
 		->get();
 	
 	foreach ($queries as $query)
