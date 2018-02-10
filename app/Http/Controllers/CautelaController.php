@@ -17,22 +17,25 @@ class CautelaController extends Controller
 	}
 
     public function lista(){
-    	$cautelas = DB::select('select cautelas.id, militares.nome_guerra as nome, data_cautela, data_entrega
-    		from cautelas,militares
-    		where cautelas.militar = militares.id');
+    	$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, militares.nome_guerra as nome, data_cautela, data_entrega
+    		from cautelas,militares, reservas
+    		where cautelas.militar = militares.id
+    		and cautelas.reserva = reservas.id
+            and cautelas.reserva =  ?',
+            array(Auth::user()->perfil));
 		
 		return view('cautela.listagem')->withCautelas($cautelas);
 	}
 
 	public function novo(){
     	$militares = DB::select('select * from militares');
-    	$pelotoes = DB::select('select * from pelotoes');
 		
-		return view('cautela.novo')->withMilitares($militares)->withPelotoes($pelotoes);
+		return view('cautela.novo')->withMilitares($militares);
 	}
 
 	public function adiciona(){
 		$cautela = Request::all();
+		$cautela['reserva'] = Auth::user()->perfil;
 		$cautela['usuario_cautela'] = Auth::user()->id;
     	Cautela::create($cautela);
 		return redirect()->action('CautelaController@lista');

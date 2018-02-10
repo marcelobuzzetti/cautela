@@ -15,6 +15,7 @@ class CreateCautelasTable extends Migration
     {
         Schema::create('cautelas', function (Blueprint $table) {
             $table->increments('id');
+             $table->integer('reserva');           
             $table->integer('militar');
             $table->date('data_cautela')->nullable();
             $table->integer('usuario_cautela')->nullable();

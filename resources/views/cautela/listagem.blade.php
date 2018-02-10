@@ -1,6 +1,11 @@
 @extends('layout.principal')
 
 @section('content')
+<br>
+  <div class="jumbotron">
+    <h1 class="display-4"> Cautelas </h1>
+  </div>
+
 @if (session('status'))
     <div class="alert alert-danger">
         {{ session('status') }}
@@ -11,6 +16,7 @@
             <thead>
               <tr>
                   <th>Número</th>
+                  <th>Reserva</th>
                   <th>Militar</th>
                   <th>Data da Cautela</th>
                   <th>Cautelar Material</th>
@@ -22,6 +28,7 @@
             <tfoot>
               <tr>
                   <th>Número</th>
+                  <th>Reservaf</th>
                   <th>Militar</th>
                   <th>Data da Cautela</th>
                   <th>Cautelar Material</th>
@@ -35,6 +42,7 @@
             @foreach ($cautelas as $c)
               <tr>
                 <td>{{$c->id}}</td>
+                <td>{{$c->reserva}}</td>
                 <td>{{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
                 @if($c->data_entrega)

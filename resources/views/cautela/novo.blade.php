@@ -1,9 +1,10 @@
 @extends('layout.principal')
 
 @section('content')
-<blockquote class="blockquote text-center">
-  <p class="mb-0">Cadastre a cautela</p>
-</blockquote>
+<br>
+<div class="jumbotron">
+    <h1 class="display-4">Cadastre a Cautela</h1>
+  </div>
 <form action="{{ action('CautelaController@adiciona') }}" method="post">
   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
   <div class="form-group">
@@ -17,7 +18,7 @@
   </div>
   <div class="form-group">
     <label>Data</label>
-    <input type="date" name="data_cautela" class="form-control">
+    <input type="date" name="data_cautela" class="form-control" required="required">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

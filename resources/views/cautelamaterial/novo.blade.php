@@ -23,7 +23,7 @@
   </div>
    <div class="form-group">
     <label>Quantidade</label>
-    <input  class="form-control" type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade">
+    <input  class="form-control" type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade" required="required">
   </div>
   <div class="form-group">
     <label>Observação</label>
@@ -31,7 +31,7 @@
   </div>
   <div class="form-group">
     <label>Data Cautela</label>
-    <input  class="form-control" type="date" name="data_cautela">
+    <input  class="form-control" type="date" name="data_cautela" required="required">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

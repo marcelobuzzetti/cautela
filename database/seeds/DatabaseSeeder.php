@@ -31,7 +31,7 @@ class MaterialTableSeeder extends Seeder
 	public function run (){
 		DB::insert('insert into materiais(nome, valor, descricao, quantidade, reserva)
 			values (?,?,?,?,?)',
-			array('Mochila de Campanha',200.00, 'Mochila de Campanha', 100, 1));
+			array('Mochila de Campanha',200.00, 'Mochila de Campanha', 100, 2));
 	}
 }
 
@@ -52,6 +52,30 @@ class PelotaoTableSeeder extends Seeder
 		DB::insert('insert into pelotoes(nome)
 			values (?)',
 			array('1º Pelotão'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('2º Pelotão'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('Pel Cmdo Ap'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('Posto Médico'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('Cia Cmdo da 11ª Bda Inf L'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('28º BIL'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('2º B Log L'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('11º Pel PE 11ª Bda Ind L'));
+		DB::insert('insert into pelotoes(nome)
+			values (?)',
+			array('EsPCEx'));
 	}
 }
 
@@ -80,6 +104,9 @@ class ReservaTableSeeder extends Seeder
 	public function run (){
 		DB::insert('insert into reservas(nome)
 			values (?)',
+			array('Administrador'));
+		DB::insert('insert into reservas(nome)
+			values (?)',
 			array('1º Pelotão'));
 		DB::insert('insert into reservas(nome)
 			values (?)',
@@ -94,9 +121,9 @@ class CautelaTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into cautelas(militar, data_cautela, usuario_cautela)
-			values (?,?,?)',
-			array(1,"2018-01-02",1));
+		DB::insert('insert into cautelas(reserva, militar, data_cautela, usuario_cautela)
+			values (?,?,?,?)',
+			array(2,1,"2018-01-02",1));
 	}
 }
 
@@ -118,6 +145,9 @@ class UsuarioTableSeeder extends Seeder
 		DB::insert('insert into users(name, email, password, perfil)
 			values (?,?,?,?)',
 			array('Marcelo', 'marcelobuzzetti@gmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', '1'));
+		DB::insert('insert into users(name, email, password, perfil)
+			values (?,?,?,?)',
+			array('Marcelo', 'marcelobuzzetti@hotmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', '2'));
 	}
 }
 

@@ -1,13 +1,12 @@
 @extends('layout.principal')
 
 @section('content')
-<div class="container">
+  <br>
   <div class="jumbotron">
     <h1 class="display-4"> @foreach ($cautela as $c)
     <p>Cautela nº {{$c->id}} - {{$c->patente}} {{$c->nome}}</p>
     @endforeach</h1>
   </div>
-</div>
 
 <div class="row">
 

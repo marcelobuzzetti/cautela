@@ -17,10 +17,22 @@ class MaterialController extends Controller
 	}
 	
     public function lista(){
-    	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
+    	if(Auth::user()->perfil == 1){
+    		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
     		materiais.descricao, materiais.quantidade, reservas.nome as reserva
     		from materiais,reservas 
     		where materiais.reserva = reservas.id');
+
+    	} else {
+
+    		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
+	    		materiais.descricao, materiais.quantidade, reservas.nome as reserva
+	    		from materiais,reservas 
+	    		where materiais.reserva = reservas.id
+	    		and reservas.id != 1
+	    		and materiais.reserva = ?',
+	    		array(Auth::user()->perfil));
+    }
 		
 		return view('material.listagem')->withMateriais($materiais);
 	}

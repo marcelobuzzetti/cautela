@@ -17,7 +17,7 @@ class RegistroController extends Controller
 	
     public function novo(){
 
-    	$perfil = DB::select('select * from perfis');
+    	$perfil = DB::select('select * from reservas');
     	return view('registro.registro')->withPerfil($perfil);
 		}
 

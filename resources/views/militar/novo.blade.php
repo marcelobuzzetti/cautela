@@ -10,7 +10,7 @@
   </div>
    <div class="form-group">
     <label>Posto/Grad</label>
-    <select class="custom-select" id="postograd" name="postograd" required="required">
+    <select class="custom-select" id="patente" name="patente" required="required">
       <option value="" selected disabled>Selecione o Posto/Grad</option>
       @foreach ($postos as $p)
         <option value="{{$p->id}}">{{$p->patente}}</option>
@@ -22,8 +22,8 @@
     <input type="text" class="form-control" id="nome_guerra" name="nome_guerra" placeholder="Digite o Nome de Guerra" required="required" value="{{ old('nome_guerra') }}">
   </div>
   <div class="form-group" >
-    <label>Pelotão</label>
-    <input type="text" class="form-control" id="pelotao" name="pelotao" placeholder="Digite o pelotao do Militar" required="required" value="{{ old('pelotao') }}">
+    <label>OM/Pelotão</label>
+    <input type="text" class="form-control" id="pelotao" name="pelotao" placeholder="Digite o OM/Pelotão do Militar" required="required" value="{{ old('pelotao') }}">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
