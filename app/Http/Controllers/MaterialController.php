@@ -57,8 +57,10 @@ class MaterialController extends Controller
 			Material::find(Request::input('id'))->update(Request::all());
 			return redirect()->action('MaterialController@lista')->withInput();
 		} else {
+			$material = Request::all();
+			$nome = $material['nome'];
 			Material::create(Request::all());
-			return redirect()->action('MaterialController@lista')->withInput(Request::only('nome'));
+			return redirect()->action('MaterialController@lista')->with('status', 'Material '.$nome.' adicionado com sucesso');
 		}
 			return view('material.listagem')->withMateriais($materiais);
 		}else{

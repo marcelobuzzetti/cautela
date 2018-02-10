@@ -5,6 +5,11 @@
   <div class="jumbotron">
     <h1 class="display-4">Lista de Materiais</h1>
   </div>
+  @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 <div class="row">
          <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>
