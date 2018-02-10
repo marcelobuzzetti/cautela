@@ -20,6 +20,7 @@ class CreateMaterialsTable extends Migration
             $table->string('descricao');
             $table->integer('quantidade');
             $table->integer('reserva');
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }

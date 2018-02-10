@@ -21,7 +21,8 @@ class MaterialController extends Controller
     		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
     		materiais.descricao, materiais.quantidade, reservas.nome as reserva
     		from materiais,reservas 
-    		where materiais.reserva = reservas.id');
+    		where materiais.reserva = reservas.id
+    		and active = 1');
 
     	} else {
 
@@ -30,6 +31,7 @@ class MaterialController extends Controller
 	    		from materiais,reservas 
 	    		where materiais.reserva = reservas.id
 	    		and reservas.id != 1
+	    		and active = 1
 	    		and materiais.reserva = ?',
 	    		array(Auth::user()->perfil));
     }

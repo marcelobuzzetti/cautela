@@ -29,9 +29,9 @@ class MaterialTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into materiais(nome, valor, descricao, quantidade, reserva)
-			values (?,?,?,?,?)',
-			array('Mochila de Campanha',200.00, 'Mochila de Campanha', 100, 2));
+		DB::insert('insert into materiais(nome, valor, descricao, quantidade, reserva, active)
+			values (?,?,?,?,?,?)',
+			array('Mochila de Campanha',200.00, 'Mochila de Campanha', 100, 2,1));
 	}
 }
 
@@ -39,9 +39,9 @@ class MilitarTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into militares(nome, patente, nome_guerra,pelotao)
-			values (?,?,?,?)',
-			array('Marcelo Aparecido Ferreira Silva',4,'Ferreira', 1));
+		DB::insert('insert into militares(nome, patente, nome_guerra,pelotao,active)
+			values (?,?,?,?,?)',
+			array('Marcelo Aparecido Ferreira Silva',4,'Ferreira', 1,1));
 	}
 }
 
@@ -142,12 +142,12 @@ class UsuarioTableSeeder extends Seeder
 {
 
 	public function run (){
-		DB::insert('insert into users(name, email, password, perfil)
-			values (?,?,?,?)',
-			array('Marcelo', 'marcelobuzzetti@gmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', '1'));
-		DB::insert('insert into users(name, email, password, perfil)
-			values (?,?,?,?)',
-			array('Marcelo', 'marcelobuzzetti@hotmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', '2'));
+		DB::insert('insert into users(name, email, password, perfil,active)
+			values (?,?,?,?,?)',
+			array('Marcelo', 'marcelobuzzetti@gmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', 1,1));
+		DB::insert('insert into users(name, email, password, perfil, active)
+			values (?,?,?,?,?)',
+			array('Marcelo', 'marcelobuzzetti@hotmail.com', '$2y$10$CMjFQJ0iuqSk5qXrShmNV.OD74ipTkfq7c6xXH7wVCthUUuxfnQuq', 2,1));
 	}
 }
 

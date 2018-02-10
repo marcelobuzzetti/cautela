@@ -21,7 +21,8 @@ class MilitarController extends Controller
     		pelotoes.nome as pelotao, postograd.patente as patente
     		from militares,pelotoes,postograd
     		where pelotoes.id = militares.pelotao
-    		and militares.patente = postograd.id');
+    		and militares.patente = postograd.id
+    		and active = 1');
 		
 		return view('militar.listagem')->withMilitares($militares);
 	}

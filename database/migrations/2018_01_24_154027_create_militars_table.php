@@ -19,6 +19,7 @@ class CreateMilitarsTable extends Migration
             $table->integer('patente');
             $table->string('nome_guerra');
             $table->integer('pelotao');
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }

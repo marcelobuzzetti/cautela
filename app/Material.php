@@ -9,7 +9,7 @@ class Material extends Model
  	protected $table = 'materiais';
     public $timestamps = false;
     /*O que pode ser inserido nesse objeto*/
-    protected $fillable = array('nome', 'valor','descricao','quantidade', 'reserva');
+    protected $fillable = array('nome', 'valor','descricao','quantidade', 'reserva','active');
 
     /*O não pode ser modificado*/
     protected $guarded = ['id'];

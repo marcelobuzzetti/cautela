@@ -9,7 +9,7 @@ class Militar extends Model
     protected $table = 'militares';
     public $timestamps = false;
     /*O que pode ser inserido nesse objeto*/
-    protected $fillable = array('nome', 'patente', 'nome_guerra','pelotao');
+    protected $fillable = array('nome', 'patente', 'nome_guerra','pelotao','active');
 
     /*O não pode ser modificado*/
     protected $guarded = ['id'];
