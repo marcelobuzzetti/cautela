@@ -65,7 +65,9 @@ class MaterialController extends Controller
 
 	public function altera($id){
 		$material = Material::find($id);
-		$reservas = DB::select('select * from reservas');
+		$reservas = DB::select('select * from reservas 
+			where id = ?',
+	    	array(Auth::user()->perfil));
 
 		return view('material.atualiza')->withM($material)->withReservas($reservas);
 	}

@@ -85,36 +85,5 @@
             </tbody>
           </table>  
       </div>
-     <!-- <div class="row">
-         <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                  <th>Material</th>
-                  <th>Data de Cautela</th>
-                  <th>Quantidade</th>
-                  <th>Entregue em</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                  <th>Material</th>
-                  <th>Data de Cautela</th>
-                  <th>Quantidade</th>
-                  <th>Entregue em</th>
-              </tr>
-            </tfoot>
-
-            <tbody>
-            @foreach ($entregues as $e)
-              <tr>
-                <td>{{$e->nome}}</td>
-                <td>{{$e->data_cautela}}</td>
-                <td>{{$e->quantidade}}</td>
-                <td>{{$e->data_entrega}}</td>
-              </tr>
-            @endforeach
-            </tbody>
-          </table>  
-      </div>-->
       </body>
 @endsection

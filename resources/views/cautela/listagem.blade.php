@@ -22,7 +22,9 @@
                   <th>Cautelar Material</th>
                   <th>Visualizar Cautela</th>
                   <th>Encerrar Cautela</th>
+                  @if(Auth::user()->perfil == 1)
                   <th>Apagar</th>
+                  @endif
               </tr>
             </thead>
             <tfoot>
@@ -34,7 +36,9 @@
                   <th>Cautelar Material</th>
                   <th>Visualizar Cautela</th>
                   <th>Encerrar Cautela</th>
+                  @if(Auth::user()->perfil == 1)
                   <th>Apagar</th>
+                  @endif
               </tr>
             </tfoot>
 
@@ -68,10 +72,12 @@
                 <td><button type="submit" class="btn btn">Encerrar Cautela</button></td>
               </form>
               @endif
+               @if(Auth::user()->perfil == 1)
                 <form action="{{ action('CautelaController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-danger"  @if(Auth::user()->perfil != 1) disabled @endif>Apagar</button></td>
+                <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
+                @endif
               </form>
               </tr>
             @endforeach

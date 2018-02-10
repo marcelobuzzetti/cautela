@@ -72,7 +72,7 @@ class PelotaoTableSeeder extends Seeder
 			array('2º B Log L'));
 		DB::insert('insert into pelotoes(nome)
 			values (?)',
-			array('11º Pel PE 11ª Bda Ind L'));
+			array('11º Pel PE da 11ª Bda Ind L'));
 		DB::insert('insert into pelotoes(nome)
 			values (?)',
 			array('EsPCEx'));

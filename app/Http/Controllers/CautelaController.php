@@ -92,12 +92,12 @@ class CautelaController extends Controller
             and cautelas.id = ?',
         array($id));
 
-
-    	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega
+        $materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
     		from cautelamateriais, materiais
     		where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
+
 		
 		return view('cautela.detalhes')->withCautela($cautela)->withCautelados($materiaiscautelados);
 
