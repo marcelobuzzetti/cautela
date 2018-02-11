@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pelotao extends Model
 {
    	protected $table = 'pelotoes';
-    public $timestamps = false;
+    public $timestamps = true;
     /*O que pode ser inserido nesse objeto*/
     protected $fillable = array('nome','active');
 

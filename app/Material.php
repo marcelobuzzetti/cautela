@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Material extends Model
 {
  	protected $table = 'materiais';
-    public $timestamps = false;
+    public $timestamps = true;
     /*O que pode ser inserido nesse objeto*/
     protected $fillable = array('nome', 'valor','descricao','quantidade', 'reserva','active');
 

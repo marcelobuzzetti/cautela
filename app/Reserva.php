@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reserva extends Model
 {
     protected $table = 'reservas';
-    public $timestamps = false;
+    public $timestamps = true;
     /*O que pode ser inserido nesse objeto*/
     protected $fillable = array('nome');
 

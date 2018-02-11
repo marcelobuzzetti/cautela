@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PostoGrad extends Model
 {
     protected $table = 'postograd';
-    public $timestamps = false;
+    public $timestamps = true;
     /*O que pode ser inserido nesse objeto*/
     protected $fillable = array('patente');
 

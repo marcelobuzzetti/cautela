@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Militar extends Model
 {
     protected $table = 'militares';
-    public $timestamps = false;
+    public $timestamps = true;
     /*O que pode ser inserido nesse objeto*/
     protected $fillable = array('nome', 'patente', 'nome_guerra','pelotao','active');
 
