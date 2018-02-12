@@ -26,14 +26,37 @@ class UsuarioController extends Controller
 		return view('usuario.listagem')->withUsuarios($usuarios);
 	}
 
+
 	public function apaga(){
 		
-    	$usuarios = DB::select('select u.id, u.name, u.email, r.nome as perfil , u.active from users as u, reservas as r
-								where r.id = u.perfil
-								and u.id != ?',
-								array(Auth::user()->id));
+    	$usuario = User::find(Request::input('id'));
+		try {
+
+		$usuario->delete();
 		
-		return view('usuario.listagem')->withUsuarios($usuarios);
+		return redirect()->action('UsuarioController@lista')->with('status', 'Usuário Apagado!');
+
+		} catch (QueryException $e) {
+
+		DB::table('users')
+            ->where('id', Request::input('id'))
+            ->update(['active' => 2]);
+
+        return redirect()->action('UsuarioController@lista')->with('status', 'Usuário Desativado!');
+		}
+	}
+
+		public function ativar(){
+		
+    	$usuario = User::find(Request::input('id'));
+
+		DB::table('users')
+            ->where('id', Request::input('id'))
+            ->update(['active' => 1]);
+
+        return redirect()->action('UsuarioController@lista')->with('status', 'Usuário Ativado!');
+		
+
 	}
 
 

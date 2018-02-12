@@ -81,6 +81,10 @@ Route::post('/registrar/novo', 'RegistroController@adiciona');
 /*Usuários*/
 Route::get('/usuarios/lista', 'UsuarioController@lista');
 
+Route::post('/usuarios/apaga', 'UsuarioController@apaga');
+
+Route::post('/usuarios/ativa', 'UsuarioController@ativar');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
