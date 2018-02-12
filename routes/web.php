@@ -85,6 +85,12 @@ Route::post('/usuarios/apaga', 'UsuarioController@apaga');
 
 Route::post('/usuarios/ativa', 'UsuarioController@ativar');
 
+Route::get('/usuarios/altera/{id}', 'UsuarioController@altera')->where('id','[0-9]+');
+
+Route::post('/usuarios/atualiza', 'UsuarioController@atualiza');
+
+Route::post('/usuarios/reset', 'UsuarioController@reset');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

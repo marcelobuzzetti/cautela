@@ -6,6 +6,7 @@ use Request;
 use Illuminate\Support\Facades\DB;
 use cautela\Http\Controllers\Controller;
 use cautela\User;
+use cautela\Reserva;
 use Validator;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
@@ -59,5 +60,22 @@ class UsuarioController extends Controller
 
 	}
 
+		public function altera($id){
+			$usuario = User::find($id);
+			$perfil = DB::select('select * from reservas');
+    		return view('usuario.atualiza')->withPerfil($perfil)->withU($usuario);
+	}
+
+		public function atualiza(){
+			$usuario = Request::all();
+			User::find(Request::input('id'))->update($usuario);
+			return redirect()->action('UsuarioController@lista')->withInput();
+	}
+
+	public function reset(){
+			$usuario['password'] = bcrypt('123456');
+			User::find(Request::input('id'))->update($usuario);
+			return redirect()->action('UsuarioController@lista')->with('status',"Senha Alterada para '123456'");
+	}
 
 }

@@ -20,6 +20,8 @@
                   <th>Perfil</th>
                   <th>Ativo</th>
                   <th>Apagar/Ativar</th>
+                  <th>Alterar</th>
+                  <th>Reset Senha</th>
               </tr>
             </thead>
             <tfoot>
@@ -29,6 +31,8 @@
                   <th>Perfil</th>
                   <th>Ativo</th>
                   <th>Apagar/Ativar</th>
+                  <th>Alterar</th>
+                  <th>Reset Senha</th>
               </tr>
             </tfoot>
 
@@ -52,6 +56,12 @@
                 <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
               </form>
                 @endif
+                <td><a class="btn btn-success" href="{{ action('UsuarioController@altera', $u->id ) }}">Atualizar</a></td>
+                  <form action="{{ action('UsuarioController@reset') }}" method="post">
+                  <input type="hidden" id="id" name='id' value="{{$u->id}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <td><button type="submit" class="btn btn-warning">Reset Senha</button></td>
+              </form>
               </tr>
             @endforeach
             </tbody>
