@@ -44,11 +44,13 @@
                   <input type="hidden" id="id" name='id' value="{{$u->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <td><button type="submit" class="btn btn-success" >Ativar</button></td>
+              </form>
                 @else
                 <form action="{{ action('UsuarioController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$u->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
+              </form>
                 @endif
               </tr>
             @endforeach

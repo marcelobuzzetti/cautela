@@ -25,6 +25,7 @@ class RegistroController extends Controller
 			$usuario = Request::all();
 			$usuario['password'] = bcrypt(Request::input('password'));
 			User::create($usuario);
-			return view('inicio');
+			
+			return redirect()->action('UsuarioController@lista')->with('status', 'Usuário cadastrado!');
 		}
 }
