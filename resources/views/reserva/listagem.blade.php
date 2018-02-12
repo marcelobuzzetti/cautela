@@ -31,6 +31,12 @@
             @foreach ($reservas as $r)
               <tr>
                 <td>{{$r->nome}}</td>
+                <td><a class="btn btn-success" href="{{ action('ReservaController@altera', $r->id ) }}">Atualizar</a></td>
+                <form action="{{ action('ReservaController@apaga') }}" method="post">
+                  <input type="hidden" id="id" name='id' value="{{$r->id}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
+                </form>
               </tr>
             @endforeach
             </tbody>

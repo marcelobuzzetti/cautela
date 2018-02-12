@@ -59,9 +59,10 @@ class PelotaoController extends Controller
             ->where('id', Request::input('id'))
             ->update(['active' => 2]);
 
-		}
+		} finally{
 
 		return redirect()->action('PelotaoController@lista');
+	}
 
 	}
 

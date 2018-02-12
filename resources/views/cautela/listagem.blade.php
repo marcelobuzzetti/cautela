@@ -50,6 +50,7 @@
                @else
                  <form action="{{ action('CautelaMaterialController@novo') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
+                  <input type="hidden" id="reserva" name='reserva' value="{{$c->reserva}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <td><button type="submit" class="btn btn-success" >Cautelar Material</button></td>
               </form>

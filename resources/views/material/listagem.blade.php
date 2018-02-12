@@ -19,9 +19,10 @@
                   <th>Descrição</th>
                   <th>Quantidade</th>
                   <th>Reserva</th>
+                  <th>Ativo</th>
                   @if(Auth::user()->perfil == 1)
                   <th>Atualizar</th>
-                  <th>Apagar</th>
+                  <th>Apagar/Ativar</th>
                   @endif
               </tr>
             </thead>
@@ -32,9 +33,10 @@
                   <th>Descrição</th>
                   <th>Quantidade</th>
                   <th>Reserva</th>
+                  <th>Ativo</th>
                   @if(Auth::user()->perfil == 1)
                   <th>Atualizar</th>
-                  <th>Apagar</th>
+                  <th>Apagar/Ativar</th>
                   @endif
               </tr>
             </tfoot>
@@ -47,12 +49,20 @@
                 <td>{{$m->descricao or 'nenhuma descrição'}}</td>
                 <td>{{$m->quantidade}}</td>
                 <td>{{$m->reserva}}</td>
+                <td>@if($m->active == 1) Sim @else Não @endif </td>
                  @if(Auth::user()->perfil == 1)
                 <td><a class="btn btn-success" href="{{ action('MaterialController@altera', $m->id ) }}">Atualizar</a></td>
+                @if($m->active == 1) 
                 <form action="{{ action('MaterialController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$m->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
+                @else
+                <form action="{{ action('MaterialController@ativa') }}" method="post">
+                  <input type="hidden" id="id" name='id' value="{{$m->id}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <td><button type="submit" class="btn btn-warning" >Ativar</button></td>
+                @endif
                 @endif
               </form>
               </tr>

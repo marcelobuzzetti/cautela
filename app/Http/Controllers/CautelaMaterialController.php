@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use cautela\Http\Controllers\Controller;
 use cautela\CautelaMaterial;
+use cautela\Reserva;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,12 +20,28 @@ class CautelaMaterialController extends Controller
     
     public function novo(){
         $id = Request::input('id');
+        $reserva['nome'] = Request::input('reserva');
+        $reserva = DB::select('select * from reservas where nome like ?',
+            array($reserva['nome']));
+        foreach($reserva as $r){
+            $reserva = $r->id;
+        }
+
     	$cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
     		from cautelas,militares
     		where cautelas.militar = militares.id
             and cautelas.id = ?',
         array($id));
-        
+        if(Auth::user()->perfil == 1){
+            $materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
+            materiais.descricao, materiais.quantidade, reservas.nome as reserva
+            from materiais,reservas 
+            where materiais.reserva = reservas.id
+            and reservas.id = ?',
+            array($reserva));
+
+        } else {
+
     	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
             materiais.descricao, materiais.quantidade, reservas.nome as reserva
             from materiais,reservas 
@@ -32,6 +49,7 @@ class CautelaMaterialController extends Controller
             and reservas.id != 1
             and materiais.reserva = ?',
             array(Auth::user()->perfil));
+        }
 
     	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
     		from cautelamateriais, materiais

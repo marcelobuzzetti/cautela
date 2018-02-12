@@ -129,9 +129,10 @@ class MilitarController extends Controller
             ->where('id', Request::input('id'))
             ->update(['active' => 2]);
 
-		}
+		} finally {
 
 		return redirect()->action('MilitarController@lista');
+	}
 
 	}
 }

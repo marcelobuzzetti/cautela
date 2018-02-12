@@ -20,10 +20,9 @@ class MaterialController extends Controller
     public function lista(){
     	if(Auth::user()->perfil == 1){
     		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
-    		materiais.descricao, materiais.quantidade, reservas.nome as reserva
+    		materiais.descricao, materiais.quantidade, reservas.nome as reserva, materiais.active
     		from materiais,reservas 
-    		where materiais.reserva = reservas.id
-    		and active = 1');
+    		where materiais.reserva = reservas.id');
 
     	} else {
 
@@ -90,9 +89,22 @@ class MaterialController extends Controller
             ->where('id', Request::input('id'))
             ->update(['active' => 2]);
 
+		} finally {
+
+			return redirect()->action('MaterialController@lista');
+
 		}
 
-		return redirect()->action('MaterialController@lista');
+	}
+
+	public function ativa(){
+		
+		DB::table('materiais')
+            ->where('id', Request::input('id'))
+            ->update(['active' => 1]);
+
+        return redirect()->action('MaterialController@lista');
+		
 
 	}
 }

@@ -25,6 +25,8 @@ Route::get('/materiais/altera/{id}', 'MaterialController@altera')->where('id','[
 
 Route::post('/materiais/apaga', 'MaterialController@apaga');
 
+Route::post('/materiais/ativa', 'MaterialController@ativa');
+
 /*Militares*/
 Route::get('/militares', 'MilitarController@lista');
 
@@ -57,6 +59,10 @@ Route::get('/reservas', 'ReservaController@lista');
 Route::get('/reservas/novo', 'ReservaController@novo');
 
 Route::post('/reservas/adiciona', 'ReservaController@adiciona');
+
+Route::get('/reservas/altera/{id}', 'ReservaController@altera')->where('id','[0-9]+');
+
+Route::post('/reservas/apaga', 'ReservaController@apaga');
 
 /*Cautela*/
 Route::get('/cautelas', 'CautelaController@lista');

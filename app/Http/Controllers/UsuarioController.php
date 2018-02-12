@@ -44,6 +44,8 @@ class UsuarioController extends Controller
             ->update(['active' => 2]);
 
         return redirect()->action('UsuarioController@lista')->with('status', 'Usuário Desativado!');
+		} finally{
+			return redirect()->action('UsuarioController@lista');
 		}
 	}
 
