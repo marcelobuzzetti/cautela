@@ -135,7 +135,14 @@
       </li>
       @if(Auth::user()->perfil == 1)
       <li>
-        <a class="nav-link {{ Request::path() == 'registrar' ? 'active' : '' }}" href="/registrar">Registrar Usuário</a>
+        <li class="nav-item dropdown {{ Request::path() == 'usuarios/lista' || Request::path() == 'registrar' ? 'active' : '' }}">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Usuários
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/usuarios/lista">Lista de Usuários</a>
+          <a class="dropdown-item" href="/registrar">Registrar Usuário</a>
+        </div>
       </li>
       @endif
       </ul>

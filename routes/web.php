@@ -73,10 +73,13 @@ Route::post('/cautelamaterial/entrega', 'CautelaMaterialController@entrega');
 
 Route::get('/cautelamaterial/maximo/id={material}', 'CautelaMaterialController@maximo')->where('material','[0-9]+');
 
-/*Usuario*/
+/*Registrar Usuários*/
 Route::get('/registrar', 'RegistroController@novo');
 
 Route::post('/registrar/novo', 'RegistroController@adiciona');
+
+/*Usuários*/
+Route::get('/usuarios/lista', 'UsuarioController@lista');
 
 Auth::routes();
 
