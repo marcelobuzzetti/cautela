@@ -20,6 +20,17 @@
     <label>Data</label>
     <input type="date" name="data_cautela" class="form-control" required="required">
   </div>
+  @if(Auth::user()->perfil == 1)
+   <div class="form-group">
+    <label>Reserva</label>
+    <select class="custom-select" id="reserva" name="reserva" required="required">
+      <option value="" selected disabled>Selecione a Reserva</option>
+      @foreach ($reservas as $r)
+        <option value="{{$r->id}}">{{$r->nome}}</option>
+      @endforeach
+    </select>
+  </div>
+  @endif
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <br>

@@ -51,6 +51,13 @@ Route::post('/pelotoes/apaga', 'PelotaoController@apaga');
 
 Route::get('/militar/pelotao', 'PelotaoController@autocomplete');
 
+/*Reservas*/
+Route::get('/reservas', 'ReservaController@lista');
+
+Route::get('/reservas/novo', 'ReservaController@novo');
+
+Route::post('/reservas/adiciona', 'ReservaController@adiciona');
+
 /*Cautela*/
 Route::get('/cautelas', 'CautelaController@lista');
 

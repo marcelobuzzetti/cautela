@@ -17,6 +17,15 @@ class CautelaController extends Controller
 	}
 
     public function lista(){
+    	if(Auth::user()->perfil == 1){
+    			$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, militares.nome_guerra as nome, data_cautela, data_entrega
+    		from cautelas,militares, reservas
+    		where cautelas.militar = militares.id
+    		and cautelas.reserva = reservas.id');
+		
+		return view('cautela.listagem')->withCautelas($cautelas);
+
+    	} else {
     	$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, militares.nome_guerra as nome, data_cautela, data_entrega
     		from cautelas,militares, reservas
     		where cautelas.militar = militares.id
@@ -26,19 +35,29 @@ class CautelaController extends Controller
 		
 		return view('cautela.listagem')->withCautelas($cautelas);
 	}
+	}
 
 	public function novo(){
     	$militares = DB::select('select * from militares');
+
+    	$reservas = DB::select('select * from reservas');
 		
-		return view('cautela.novo')->withMilitares($militares);
+		return view('cautela.novo')->withMilitares($militares)->withReservas($reservas);
 	}
 
 	public function adiciona(){
-		$cautela = Request::all();
-		$cautela['reserva'] = Auth::user()->perfil;
-		$cautela['usuario_cautela'] = Auth::user()->id;
-    	Cautela::create($cautela);
-		return redirect()->action('CautelaController@lista');
+		if(Auth::user()->perfil == 1){
+			$cautela = Request::all();
+			$cautela['usuario_cautela'] = Auth::user()->id;
+    		Cautela::create($cautela);
+			return redirect()->action('CautelaController@lista');
+		} else {
+			$cautela = Request::all();
+			$cautela['reserva'] = Auth::user()->perfil;
+			$cautela['usuario_cautela'] = Auth::user()->id;
+	    	Cautela::create($cautela);
+			return redirect()->action('CautelaController@lista');
+		}
 	}
 
 	public function encerra(){
