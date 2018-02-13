@@ -27,7 +27,7 @@ class MaterialController extends Controller
     	} else {
 
     		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
-	    		materiais.descricao, materiais.quantidade, reservas.nome as reserva
+	    		materiais.descricao, materiais.quantidade, reservas.nome as reserva, materiais.active
 	    		from materiais,reservas 
 	    		where materiais.reserva = reservas.id
 	    		and reservas.id != 1
@@ -40,18 +40,13 @@ class MaterialController extends Controller
 	}
 
 	public function novo(){
-		if(Auth::user()->perfil == 1){
 		$reservas = DB::select('select * from reservas');
 
 		return view('material.novo')->withReservas($reservas);
-		}else{
-			return view('inicio');
-		}
 	}
 
 	public function adiciona(){
 
-		if(Auth::user()->perfil == 1){
 		if (Request::input('id')){
 			Material::find(Request::input('id'))->update(Request::all());
 			return redirect()->action('MaterialController@lista')->withInput();
@@ -62,16 +57,17 @@ class MaterialController extends Controller
 			return redirect()->action('MaterialController@lista')->with('status', 'Material '.$nome.' adicionado com sucesso');
 		}
 			return view('material.listagem')->withMateriais($materiais);
-		}else{
-			return view('inicio');
-		}		
 	}
 
 	public function altera($id){
 		$material = Material::find($id);
-		$reservas = DB::select('select * from reservas 
+		if(Auth::user()->perfil == 1){
+			$reservas = DB::select('select * from reservas');
+		} else {
+			$reservas = DB::select('select * from reservas 
 			where id = ?',
 	    	array(Auth::user()->perfil));
+		}
 
 		return view('material.atualiza')->withM($material)->withReservas($reservas);
 	}

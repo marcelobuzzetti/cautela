@@ -15,15 +15,19 @@
             <thead>
               <tr>
                   <th>Nome</th>
+                  @if(Auth::user()->perfil == 1)
                   <th>Atualizar</th>
                   <th>Apagar</th>
+                  @endif
               </tr>
             </thead>
             <tfoot>
               <tr>
                   <th>Nome</th>
+                  @if(Auth::user()->perfil == 1)
                   <th>Atualizar</th>
                   <th>Apagar</th>
+                  @endif
               </tr>
             </tfoot>
 
@@ -31,12 +35,14 @@
             @foreach ($reservas as $r)
               <tr>
                 <td>{{$r->nome}}</td>
+                @if(Auth::user()->perfil == 1)
                 <td><a class="btn btn-success" href="{{ action('ReservaController@altera', $r->id ) }}">Atualizar</a></td>
                 <form action="{{ action('ReservaController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$r->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
                 <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
                 </form>
+                @endif
               </tr>
             @endforeach
             </tbody>

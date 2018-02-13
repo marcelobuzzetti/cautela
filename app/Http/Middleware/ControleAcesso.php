@@ -16,13 +16,11 @@ class ControleAcesso
      */
     public function handle($request, Closure $next)
     {
-
-        if(Auth::check()){
-            if(Auth::user()->perfil == 1){
-
-            }
-        } else {
-             return redirect('/home');
+     
+     
+        if (Auth::check() && Auth::user()->perfil == 1) {
+            return $next($request);   
         }
+        return redirect('/');
     }
 }

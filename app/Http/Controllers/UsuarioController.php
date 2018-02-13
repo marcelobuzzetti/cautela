@@ -15,21 +15,20 @@ class UsuarioController extends Controller
 {
     public function __construct()
 	{
-		$this->middleware('auth');
+		$this->middleware('acl');
 	}
 	
     public function lista(){
-    	$usuarios = DB::select('select u.id, u.name, u.email, r.nome as perfil , u.active from users as u, reservas as r
-								where r.id = u.perfil
-								and u.id != ?',
-								array(Auth::user()->id));
+    		$usuarios = DB::select('select u.id, u.name, u.email, r.nome as perfil , u.active from users as u, reservas as r
+									where r.id = u.perfil
+									and u.id != ?',
+									array(Auth::user()->id));
 		
-		return view('usuario.listagem')->withUsuarios($usuarios);
+			return view('usuario.listagem')->withUsuarios($usuarios);
 	}
 
 
 	public function apaga(){
-		
     	$usuario = User::find(Request::input('id'));
 		try {
 

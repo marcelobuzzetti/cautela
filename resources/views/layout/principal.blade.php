@@ -133,7 +133,8 @@
           <a class="dropdown-item" href="/militares/novo">Adicionar Militar</a>
         </div>
       </li>
-      <li class="nav-item dropdown {{ Request::path() == 'militares/novo' || Request::path() == 'militares' ? 'active' : '' }}">
+      @if(Auth::user()->perfil == 1)
+       <li class="nav-item dropdown {{ Request::path() == 'militares/novo' || Request::path() == 'militares' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Reservas
         </a>
@@ -142,7 +143,6 @@
           <a class="dropdown-item" href="/reservas/novo">Adicionar Reservas</a>
         </div>
       </li>
-      @if(Auth::user()->perfil == 1)
       <li>
         <li class="nav-item dropdown {{ Request::path() == 'usuarios/lista' || Request::path() == 'registrar' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
