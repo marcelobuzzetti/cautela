@@ -134,7 +134,7 @@
         </div>
       </li>
       @if(Auth::user()->perfil == 1)
-       <li class="nav-item dropdown {{ Request::path() == 'militares/novo' || Request::path() == 'militares' ? 'active' : '' }}">
+       <li class="nav-item dropdown {{ Request::path() == 'reservas/novo' || Request::path() == 'reservas' ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Reservas
         </a>
