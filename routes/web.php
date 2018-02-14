@@ -67,8 +67,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*Sobrescrevendo a rota registro do laravel*/
-Route::get('/register', 'RegistroController@novo');
+/*Sobrescrevendo a rota registro do laravel
+Route::get('/register', 'RegistroController@novo');*/
 
 /*Somente Adminstradores*/
 Route::middleware(['auth', 'acl'])->group(function () {
