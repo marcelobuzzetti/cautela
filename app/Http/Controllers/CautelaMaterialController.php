@@ -134,7 +134,7 @@ class CautelaMaterialController extends Controller
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
-        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
+        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues)->with('sucesso','Material entregue com sucesso');
     }
 
     public function maximo($id){
