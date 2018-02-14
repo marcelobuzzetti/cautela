@@ -21,6 +21,14 @@
     <label>Nome de Guerra</label>
     <input type="text" class="form-control" id="nome_guerra" name="nome_guerra" placeholder="Digite o Nome de Guerra" required="required" value="{{ old('nome_guerra') }}">
   </div>
+  <div class="form-group">
+    <label>Telefone</label>
+    <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o Telefone" required="required" value="{{ old('telefone') }}">
+  </div>
+  <div class="form-group">
+    <label>E-mail</label>
+    <input type="text" class="form-control" id="email" name="email" placeholder="Digite o E-mail" required="required" value="{{ old('email') }}">
+  </div>
   <div class="form-group" >
     <label>OM/Pelotão</label>
     <input type="text" class="form-control" id="pelotao" name="pelotao" placeholder="Digite o OM/Pelotão do Militar" required="required" value="{{ old('pelotao') }}">

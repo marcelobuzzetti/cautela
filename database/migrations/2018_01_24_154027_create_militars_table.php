@@ -18,6 +18,8 @@ class CreateMilitarsTable extends Migration
             $table->string('nome');
             $table->integer('patente')->unsigned();
             $table->string('nome_guerra');
+            $table->string('telefone')->nullable();
+            $table->string('email')->nullable();
             $table->integer('pelotao')->unsigned();
             $table->integer('active')->default(1);
             $table->timestamps();

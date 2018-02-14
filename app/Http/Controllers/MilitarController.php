@@ -19,7 +19,7 @@ class MilitarController extends Controller
 	
     public function lista(){
     	$militares = DB::select('select militares.id, militares.nome, militares.nome_guerra, 
-    		pelotoes.nome as pelotao, postograd.patente as patente
+    		pelotoes.nome as pelotao, postograd.patente as patente, militares.telefone, militares.email
     		from militares,pelotoes,postograd
     		where pelotoes.id = militares.pelotao
     		and militares.patente = postograd.id
