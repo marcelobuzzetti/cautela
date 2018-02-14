@@ -5,9 +5,11 @@
   <div class="jumbotron">
     <h1 class="display-4"> @foreach ($cautela as $c)
     <p>Cautela nº {{$c->id}} - {{$c->patente}} {{$c->nome}}</p>
+    <p>Telefone <a target="-top" href="https://api.whatsapp.com/send?phone=55{{$c->telefone}}&text=Cautela%20em%20Aberto">{{$c->telefone}}</a></p>
+    <p> E-mail  <a href="mailto:{{$c->email}}?Subject=Cautela%20aberta" target="_top">{{$c->email}}</p></a></p>
+</p>
     @endforeach</h1>
   </div>
-
  <div class="row">
          <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>

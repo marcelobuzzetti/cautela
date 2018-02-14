@@ -39,7 +39,7 @@
                 <td>{{$m->patente}}</td>
                 <td>{{$m->nome_guerra}}</td>
                 <td><a target="new_blank" href="https://api.whatsapp.com/send?phone=55{{$m->telefone}}&text=Cautela%20em%20Aberto">WhatsApp</a>{{$m->telefone}}</td>
-                <td>{{$m->email}}</td>
+                <td><a href="mailto:{{$m->email}}" target="_top">{{$m->email}}</a></td>
                 <td>{{$m->pelotao}}</td>
                 <td><a class="btn btn-success" href="{{ action('MilitarController@altera', $m->id ) }}">Atualizar</a></td>
                 @if(Auth::user()->perfil == 1)
