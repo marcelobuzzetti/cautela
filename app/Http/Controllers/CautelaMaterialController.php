@@ -95,10 +95,7 @@ class CautelaMaterialController extends Controller
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
-
-         return redirect()->action(
-            'CautelaMaterialController@novo', ['id' => $id]
-        );
+        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues)->with('sucesso','Material cautelado com sucesso');
     }
 
     public function entrega(){
