@@ -50,13 +50,13 @@ class CautelaController extends Controller
 			$cautela = Request::all();
 			$cautela['usuario_cautela'] = Auth::user()->id;
     		Cautela::create($cautela);
-			return redirect()->action('CautelaController@lista');
+			return redirect()->action('CautelaController@lista')->with('sucesso','Cautela adicioanda com sucesso');
 		} else {
 			$cautela = Request::all();
 			$cautela['reserva'] = Auth::user()->perfil;
 			$cautela['usuario_cautela'] = Auth::user()->id;
 	    	Cautela::create($cautela);
-			return redirect()->action('CautelaController@lista');
+			return redirect()->action('CautelaController@lista')->with('sucesso','Cautela adicioanda com sucesso');
 		}
 	}
 
@@ -78,7 +78,7 @@ class CautelaController extends Controller
 
         	Cautela::where('id', $id)->update(array('data_entrega' => $today,'usuario_entrega' => Auth::user()->id));
 
-			return redirect()->action('CautelaController@lista');
+			return redirect()->action('CautelaController@lista')->with('sucesso','Cautela encerrada com sucesso');
 		}
 	}
 
@@ -97,7 +97,7 @@ class CautelaController extends Controller
 
 		$cautela = Cautela::find($id);
 		$cautela->delete();
-		return redirect()->action('CautelaController@lista');
+		return redirect()->action('CautelaController@lista')->with('sucesso', 'Cautela apagada com sucesso!');
 
 		}
 	}

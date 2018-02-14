@@ -1,9 +1,20 @@
 @extends('layout.principal')
 
 @section('content')
-<blockquote class="blockquote text-center">
-  <p class="mb-0">Cautela de Material</p>
-</blockquote>
+<br>
+  <div class="jumbotron">
+    <h1 class="display-4"> Cautela de Material </h1>
+  </div>
+@if (session('status'))
+    <div class="alert alert-danger">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('sucesso'))
+    <div class="alert alert-success">
+        {{ session('sucesso') }}
+    </div>
+@endif
 <form action="{{ action('CautelaMaterialController@adiciona') }}" method="post">
   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
   <div class="form-group">

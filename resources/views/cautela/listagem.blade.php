@@ -5,10 +5,14 @@
   <div class="jumbotron">
     <h1 class="display-4"> Cautelas </h1>
   </div>
-
 @if (session('status'))
     <div class="alert alert-danger">
         {{ session('status') }}
+    </div>
+@endif
+@if (session('sucesso'))
+    <div class="alert alert-success">
+        {{ session('sucesso') }}
     </div>
 @endif
 <div class="row">
