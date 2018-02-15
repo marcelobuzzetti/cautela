@@ -6,6 +6,7 @@
         <!--Import materialize.css-->
         <!-- Compiled and minified CSS -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Cautela</title>
@@ -193,5 +194,11 @@
         <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/datatables.min.js') }}"></script>
+        <script type="text/javascript">
+          $(document).ready( function () {
+            $('#table').DataTable();
+          } );
+        </script>
       </body>
     </html>

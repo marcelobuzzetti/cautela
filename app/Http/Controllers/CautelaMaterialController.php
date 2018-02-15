@@ -27,11 +27,16 @@ class CautelaMaterialController extends Controller
             $reserva = $r->id;
         }
 
-    	$cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
+    	$cautela = DB::select('select cautelas.id, militares.nome_guerra as nome , reserva
     		from cautelas,militares
     		where cautelas.militar = militares.id
             and cautelas.id = ?',
-        array($id));
+            array($id));
+
+        foreach($cautela as $c){
+                $teste = $c->reserva;
+            }
+
         if(Auth::user()->perfil == 1){
             $materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
             materiais.descricao, materiais.quantidade, reservas.nome as reserva
@@ -41,28 +46,32 @@ class CautelaMaterialController extends Controller
             array($reserva));
 
         } else {
+            if($teste != Auth::user()->perfil){
+                return redirect()->action('CautelaController@lista');
+            }
 
-    	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
-            materiais.descricao, materiais.quantidade, reservas.nome as reserva
-            from materiais,reservas 
-            where materiais.reserva = reservas.id
-            and reservas.id != 1
-            and materiais.reserva = ?',
-            array(Auth::user()->perfil));
-        }
 
-    	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
-    		from cautelamateriais, materiais
-    		where cautelamateriais.material = materiais.id
-            and cautelamateriais.cautela = ?',
-            array($id));
-		
-		 $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
-            from cautelamateriais, materiais
-            where cautelamateriais.material = materiais.id
-            and cautelamateriais.cautela = ?',
-            array($id));
-        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
+        	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
+                materiais.descricao, materiais.quantidade, reservas.nome as reserva
+                from materiais,reservas 
+                where materiais.reserva = reservas.id
+                and reservas.id != 1
+                and materiais.reserva = ?',
+                array(Auth::user()->perfil));
+            }
+
+        	$materiaiscautelados = DB::select('select cautelamateriais.id as id, cautelamateriais.cautela as cautela, materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
+        		from cautelamateriais, materiais
+        		where cautelamateriais.material = materiais.id
+                and cautelamateriais.cautela = ?',
+                array($id));
+    		
+    		 $materiaisentregues = DB::select('select materiais.nome, data_cautela, cautelamateriais.quantidade as quantidade, cautelamateriais.data_entrega as data_entrega, observacao_cautela, observacao_entrega
+                from cautelamateriais, materiais
+                where cautelamateriais.material = materiais.id
+                and cautelamateriais.cautela = ?',
+                array($id));
+            return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues);
 	}
 
     public function adiciona(){
@@ -70,7 +79,7 @@ class CautelaMaterialController extends Controller
         $cautela = Request::all();
         $cautela['usuario_cautela'] = Auth::user()->id;
         CautelaMaterial::create($cautela);
-        $cautela = DB::select('select cautelas.id, militares.nome_guerra as nome 
+        $cautela = DB::select('select cautelas.id, militares.nome_guerra as nome , reserva
             from cautelas,militares
             where cautelas.militar = militares.id
             and cautelas.id = ?',
@@ -95,7 +104,9 @@ class CautelaMaterialController extends Controller
             where cautelamateriais.material = materiais.id
             and cautelamateriais.cautela = ?',
             array($id));
-        return view('cautelamaterial.novo')->withCautela($cautela)->withMateriais($materiais)->withCautelados($materiaiscautelados)->withEntregues($materiaisentregues)->with('sucesso','Material cautelado com sucesso');
+         return redirect()->action(
+            'CautelaMaterialController@novo', ['id' => $id]
+        );
     }
 
     public function entrega(){

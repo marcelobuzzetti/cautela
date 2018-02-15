@@ -41,8 +41,10 @@ class CautelaController extends Controller
     	$militares = DB::select('select * from militares');
 
     	$reservas = DB::select('select * from reservas');
+
+    	$posto = DB::select('select * from postograd');
 		
-		return view('cautela.novo')->withMilitares($militares)->withReservas($reservas);
+		return view('cautela.novo')->withMilitares($militares)->withReservas($reservas)->withPostos($posto);
 	}
 
 	public function adiciona(){

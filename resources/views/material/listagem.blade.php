@@ -11,7 +11,7 @@
     </div>
 @endif
 <div class="row">
-         <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
+         <table id="table" class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
                   <th>Nome</th>
