@@ -194,10 +194,50 @@
         <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
-        <script src="{{ asset('js/datatables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.min.js') }}"></script>
         <script type="text/javascript">
           $(document).ready( function () {
-            $('#table').DataTable();
+            $('#table').DataTable( {
+              responsive: true,
+              fixedHeader: true,
+               autoFill: true,
+               colReorder: true,
+                keys: true,
+                ordering:  true,
+                language: {
+                  processing:     "Aguarde enquanto os dados são carregados ...",
+                  search:         "Pesquisar",
+                  lengthMenu:    "Mostrar _MENU_ registros por pagina",
+                  info:           "Exibindo de _START_ a _END_ de _TOTAL_ registros",
+                  infoEmpty:      "Exibindo 0 a 0 de 0 registros",
+                  infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                  infoPostFix:    "",
+                  loadingRecords: "Chargement en cours...",
+                  zeroRecords:    "Nenhum registro encontrado",
+                  emptyTable:     "Não há dados para exibir",
+                  paginate: {
+                      first:      "Primeiro",
+                      previous:   "Anterior",
+                      next:       "Próximo",
+                      last:       "Último"
+                  },
+                  aria: {
+                      sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                      sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                  }
+              },
+                
+     
+              dom: 'fBrtip',
+    lengthMenu: [
+        [ 10, 25, 50, -1 ],
+        [ '10 linhas', '25 linhas', '50 linhas', 'Mostrar tudo' ]
+    ],
+    buttons: [
+        'pageLength',  'copy', 'excel', 'pdf'
+    ]
+              
+            } );
           } );
         </script>
       </body>
