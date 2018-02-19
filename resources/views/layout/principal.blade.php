@@ -228,13 +228,9 @@
               },
                 
      
-              dom: 'fBrtip',
-    lengthMenu: [
-        [ 10, 25, 50, -1 ],
-        [ '10 linhas', '25 linhas', '50 linhas', 'Mostrar tudo' ]
-    ],
+              dom: 'flBrtip',
     buttons: [
-        'pageLength',  'copy', 'excel', 'pdf'
+      'copy', 'excel', 'pdf'
     ]
               
             } );
