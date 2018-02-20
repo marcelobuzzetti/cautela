@@ -7,6 +7,7 @@
         <!-- Compiled and minified CSS -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Cautela</title>
@@ -197,6 +198,9 @@
         <script src="{{ asset('js/dataTables.min.js') }}"></script>
         <script type="text/javascript">
           $(document).ready( function () {
+
+            $( "input[name='data_cautela']" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
             $('#table').DataTable( {
               responsive: true,
               fixedHeader: true,
