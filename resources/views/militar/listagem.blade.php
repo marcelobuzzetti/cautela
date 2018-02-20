@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-         <table class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
+         <table id="table" class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>
               <tr>
                   <th>Nome</th>
@@ -38,8 +38,16 @@
                 <td>{{$m->nome}}</td>
                 <td>{{$m->patente}}</td>
                 <td>{{$m->nome_guerra}}</td>
+                @if($m->telefone)
                 <td><a target="new_blank" href="https://api.whatsapp.com/send?phone=55{{$m->telefone}}&text=Cautela%20em%20Aberto"><img src="{{ asset('whatsapp.png') }}" height="42" width="42"></a>{{$m->telefone}}</td>
+                @else
+                <td>Sem telefone</td>
+                @endif
+                @if($m->email)
                 <td><a href="mailto:{{$m->email}}" target="_top">{{$m->email}}</a></td>
+                @else
+                <td>Sem e-mail</td>
+                @endif
                 <td>{{$m->pelotao}}</td>
                 <td><a class="btn btn-success" href="{{ action('MilitarController@altera', $m->id ) }}">Atualizar</a></td>
                 @if(Auth::user()->perfil == 1)
