@@ -196,9 +196,10 @@
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/modernizr-custom.js') }}"></script>
         <script type="text/javascript">
           $(document).ready( function () {
-
+          if(!Modernizr.inputtypes.date){
             $( "input[name='data_cautela']" ).datepicker({ dateFormat: 'yy-mm-dd' });
 
             $('#table').DataTable( {
@@ -238,7 +239,74 @@
     ]
               
             } );
-          } );
-        </script>
+          }     
+});
+
+        </script>-->
+        <!--Usando Modernizr para campos do tipo data
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <script>
+        $(document).ready( function () {
+          if (Modernizr.inputtypes.date == false) {
+
+            // load the JQuery UI styles:
+            link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+
+            // load JQuery:
+            newScript = document.createElement('script');
+            newScript.src = '//code.jquery.com/jquery-1.10.2.js';
+            document.getElementsByTagName('head')[0].appendChild(newScript);
+
+            // jquery-ui.js depends on jquery-1.10.2.js being fully loaded,
+            // so wait half a second:
+            setTimeout(function(){
+              newScript = document.createElement('script');
+              newScript.src = '//code.jquery.com/ui/1.11.4/jquery-ui.js';
+              document.getElementsByTagName('head')[0].appendChild(newScript);
+
+              // the datepicker plugin depends on jquery-ui.js being fully loaded,
+              // so wait another half a second:
+              setTimeout(function(){
+                $("#datepicker").datepicker();
+              }, 500);
+
+            }, 500);
+
+          }
+
+          if (Modernizr.inputtypes.color == false) {
+
+            // load the JQuery UI styles:
+            link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'http://www.mackstudiopro.com/non_main_msp/colpick.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+
+            // load JQuery:
+            newScript = document.createElement('script');
+            newScript.src = '//code.jquery.com/jquery-1.10.2.js';
+            document.getElementsByTagName('head')[0].appendChild(newScript);
+
+            // jquery-ui.js depends on jquery-1.10.2.js being fully loaded,
+            // so wait half a second:
+            setTimeout(function(){
+              newScript = document.createElement('script');
+              newScript.src = 'http://www.mackstudiopro.com/non_main_msp/colpick.js';
+              document.getElementsByTagName('head')[0].appendChild(newScript);
+
+              // call the thecolpic constructor after the plugin is fully loaded
+              // by waiting another half a second:
+              setTimeout(function(){
+                $("#colorpicker").colpick();
+              }, 500);
+
+            }, 500);
+
+          }
+        })
+      </script>-->
       </body>
     </html>
