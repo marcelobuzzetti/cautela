@@ -43,7 +43,7 @@ class CautelaMaterialController extends Controller
             from materiais,reservas 
             where materiais.reserva = reservas.id
             and reservas.id = ?',
-            array($reserva));
+            array($teste));
 
         } else {
             if($teste != Auth::user()->perfil){

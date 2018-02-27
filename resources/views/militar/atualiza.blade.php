@@ -24,11 +24,11 @@
   </div>
    <div class="form-group">
     <label>Telefone</label>
-    <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o Telefone" required="required" value="{{ $m->telefone }}">
+    <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o Telefone" value="{{ $m->telefone }}">
   </div>
   <div class="form-group">
     <label>E-mail</label>
-    <input type="text" class="form-control" id="email" name="email" placeholder="Digite o E-mail" required="required" value="{{ $m->email}}">
+    <input type="text" class="form-control" id="email" name="email" placeholder="Digite o E-mail"  value="{{ $m->email}}">
   </div>
   <div class="form-group" >
     <label>Pelotão</label>
