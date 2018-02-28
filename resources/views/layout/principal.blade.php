@@ -201,7 +201,8 @@
           $(document).ready( function () {
           if(!Modernizr.inputtypes.date){
             $( "input[name='data_cautela']" ).datepicker({ dateFormat: 'yy-mm-dd' });
-
+            } 
+            
             $('#table').DataTable( {
               responsive: true,
               fixedHeader: true,
@@ -230,19 +231,15 @@
                       sortAscending:  ": activer pour trier la colonne par ordre croissant",
                       sortDescending: ": activer pour trier la colonne par ordre décroissant"
                   }
-              },
-                
-     
+              },             
               dom: 'flBrtip',
-    buttons: [
-      'copy', 'excel', 'pdf'
-    ]
-              
-            } );
-          }     
-});
+              buttons: [
+                'copy', 'excel', 'pdf'
+              ]
+            });
+          })
 
-        </script>-->
+        </script>
         <!--Usando Modernizr para campos do tipo data
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
         <script>
