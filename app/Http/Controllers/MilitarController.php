@@ -39,48 +39,56 @@ class MilitarController extends Controller
 		
 		if (Request::input('id')){
 
-			$pelotao = Pelotao::find(Request::input('pelotao'));
+			
+			$pelotao = DB::table('pelotoes')->where('nome', 'like', Request::input('pelotao'))->get();
+			$pelotao = json_decode(json_encode($pelotao), true);
 
 			if($pelotao){
-				if($pelotao['active'] == 2){
+				if($pelotao[0]['active'] == 2){
 					DB::table('pelotoes')
-		            ->where('id', Request::input('pelotao'))            
+		            ->where('id', $pelotao[0]['id'])            
 		            ->update(['active' => 1]);
 				}
 				$militar = Request::all();
-				$militar['pelotao'] = $pelotao['id'];
+				$militar['pelotao'] = $pelotao[0]['id'];
 				Militar::find(Request::input('id'))->update($militar);
 				return redirect()->action('MilitarController@lista')->withInput();
 			} else {
+				
 				$pelotao['nome'] = Request::input('pelotao');
 				Pelotao::create($pelotao);
 				$a = $pelotao['nome'];
-				$pelotao = Pelotao::find($a);				
+				$pelotao = DB::table('pelotoes')->where('nome', 'like', $a)->get();
+				$pelotao = json_decode(json_encode($pelotao), true);
 				$militar = Request::all();
-				$militar['pelotao'] = $pelotao['id'];
+				$militar['pelotao'] = $pelotao[0]['id'];
 				Militar::find(Request::input('id'))->update($militar);
 				return redirect()->action('MilitarController@lista')->withInput();
 			}
 
 		} else {
-			$pelotao = Pelotao::find(Request::input('pelotao'));
+
+			$pelotao = DB::table('pelotoes')->where('nome', 'like', Request::input('pelotao'))->get();
+			$pelotao = json_decode(json_encode($pelotao), true);
+
 			if($pelotao){
-				if($pelotao['active'] == 2){
+				if($pelotao[0]['active'] == 2){
 					DB::table('pelotoes')
-		            ->where('id', Request::input('pelotao'))            
+		            ->where('id', $pelotao[0]['id'])            
 		            ->update(['active' => 1]);
 				}
 				$militar = Request::all();
-				$militar['pelotao'] = $pelotao['id'];
+				$militar['pelotao'] = $pelotao[0]['id'];
 				Militar::create($militar);
 				return redirect()->action('MilitarController@lista')->withInput(Request::only('nome'));	
 			} else {
 				$pelotao['nome'] = Request::input('pelotao');
 				Pelotao::create($pelotao);
 				$a = $pelotao['nome'];
-				$pelotao = Pelotao::find($a);	
+				$pelotao = DB::table('pelotoes')->where('nome', 'like', $a)->get();
+				$pelotao = json_decode(json_encode($pelotao), true);
 				$militar = Request::all();
-				$militar['pelotao'] = $pelotao['id'];
+				$militar['pelotao'] = $pelotao[0]['id'];
 				Militar::create($militar);
 				return redirect()->action('MilitarController@lista')->withInput(Request::only('nome'));	
 			}
