@@ -1,6 +1,10 @@
 @extends('layout.principal')
 
 @section('content')
+<br>
+  <div class="jumbotron">
+    <h1 class="display-4">Pelotões</h1>
+  </div>
 <div class="row">
          <table  class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>

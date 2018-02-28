@@ -47,7 +47,7 @@
               <tr>
                 <td>{{$c->id}}</td>
                 <td>{{$c->reserva}}</td>
-                <td>{{$c->nome}}</td>
+                <td>{{ $c->patente }} {{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
                 @if($c->data_entrega)
                <td>Cautela Encerrada</td>

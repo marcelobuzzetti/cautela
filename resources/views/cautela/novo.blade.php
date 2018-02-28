@@ -12,7 +12,7 @@
     <select class="custom-select" id="militar" name="militar" required="required">
       <option value="" selected disabled>Selecione um Militar</option>
       @foreach ($militares as $m)
-        <option value="{{$m->id}}"> {{$m->nome_guerra}}</option>
+        <option value="{{$m->id}}">{{$m->patente}} {{$m->nome_guerra}}</option>
       @endforeach
     </select>
   </div>
