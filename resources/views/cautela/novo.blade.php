@@ -9,7 +9,7 @@
   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
   <div class="form-group">
     <label>Militar</label>
-    <select class="custom-select" id="militar" name="militar" required="required">
+    <select class="js-example-responsive custom-select" id="militar" name="militar" required="required">
       <option value="" selected disabled>Selecione um Militar</option>
       @foreach ($militares as $m)
         <option value="{{$m->id}}">{{$m->patente}} {{$m->nome_guerra}}</option>
