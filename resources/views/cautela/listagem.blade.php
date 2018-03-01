@@ -23,7 +23,8 @@
                   <th>Reserva</th>
                   <th>Militar</th>
                   <th>Data da Cautela</th>
-                  <th>Cautelar Material</th>
+                  <th>Cautelar</th>
+                  <th>Descautelar</th>
                   <th>Visualizar Cautela</th>
                   <th>Encerrar Cautela</th>
                   <th>Apagar</th>
@@ -35,7 +36,8 @@
                   <th>Reservaf</th>
                   <th>Militar</th>
                   <th>Data da Cautela</th>
-                  <th>Cautelar Material</th>
+                  <th>Cautelar</th>
+                  <th>Descautelar</th>
                   <th>Visualizar Cautela</th>
                   <th>Encerrar Cautela</th>
                   <th>Apagar</th>
@@ -52,34 +54,42 @@
                 @if($c->data_entrega)
                <td>Cautela Encerrada</td>
                @else
-                 <form action="{{ action('CautelaMaterialController@novo') }}" method="post">
+                 <td><form action="{{ action('CautelaMaterialController@novo') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" id="reserva" name='reserva' value="{{$c->reserva}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-success" >Cautelar Material</button></td>
-              </form>
+                <button type="submit" class="btn btn-success" >Cautelar Material</button>
+              </form></td>
               @endif
-               <form action="{{ action('CautelaController@detalhes') }}" method="post">
+              @if($c->data_entrega)
+               <td>Cautela Encerrada</td>
+               @else
+                 <td><form action="{{ action('CautelaMaterialController@descautela') }}" method="post">
+                  <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
+                  <input type="hidden" id="reserva" name='reserva' value="{{$c->reserva}}"/>
+                  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+                <button type="submit" class="btn btn-dark" >Descautelar Material</button>
+              </form></td>
+              @endif
+               <td><form action="{{ action('CautelaController@detalhes') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-info">Visualizar Cautela</button></td>
-              </form>
+                <button type="submit" class="btn btn-info">Visualizar Cautela</button>
+              </form></td>
               @if($c->data_entrega)
                <td>Encerrada em {{$c->data_entrega}}</td>
                @else
-              <form action="{{ action('CautelaController@encerra') }}" method="post">
+              <td><form action="{{ action('CautelaController@encerra') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn">Encerrar Cautela</button></td>
-              </form>
+                <button type="submit" class="btn btn-warning">Encerrar Cautela</button>
+              </form></td>
               @endif
-              
-                <form action="{{ action('CautelaController@apaga') }}" method="post">
+                <td><form action="{{ action('CautelaController@apaga') }}" method="post">
                   <input type="hidden" id="id" name='id' value="{{$c->id}}"/>
                   <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-                <td><button type="submit" class="btn btn-danger" >Apagar</button></td>
-            
-              </form>
+                <button type="submit" class="btn btn-danger" >Apagar</button>
+              </form></td>
               </tr>
             @endforeach
             </tbody>

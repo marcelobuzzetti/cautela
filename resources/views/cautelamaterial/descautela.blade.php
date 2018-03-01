@@ -3,9 +3,9 @@
 @section('content')
 <br>
   <div class="jumbotron">
-    <h1 class="display-4"> Cautela de Material </h1>
+    <h1 class="display-4"> Descautela de Material </h1>
   </div>
-@if (session('status'))
+  @if (session('status'))
     <div class="alert alert-danger">
         {{ session('status') }}
     </div>
@@ -15,40 +15,13 @@
         {{ session('sucesso') }}
     </div>
 @endif
-<form action="{{ action('CautelaMaterialController@adiciona') }}" method="post">
-  <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-  <div class="form-group">
+<div class="form-group">
     @foreach ($cautela as $c)
     <input name="cautela" value="{{$c->id}}" type="hidden">
     <p>Cautela nº {{$c->id}} - Militar {{$c->nome}}</p>
     @endforeach
-  </div>
-  <div class="form-group">
-    <label>Material</label>
-    <select class="js-example-responsive custom-select" id="material" name="material" required="required">
-      <option value="" selected disabled>Selecione o Material</option>
-      @foreach ($materiais as $m)
-        <option value="{{$m->id}}">{{$m->nome}}</option>
-      @endforeach
-    </select>
-  </div>
-   <div class="form-group">
-    <label>Quantidade</label>
-    <input  class="form-control" type="number"  min="1" id="quantidade" name="quantidade" placeholder="Digite a quantidade" required="required">
-  </div>
-  <div class="form-group">
-    <label>Observação</label>
-    <input  class="form-control" type="text"  id="observacao_cautela" name="observacao_cautela" placeholder="Digite as alterações encontradas">
-  </div>
-  <div class="form-group">
-    <label>Data Cautela</label>
-    <input  class="form-control" type="date" name="data_cautela" required="required">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-<blockquote class="blockquote text-center">
-  <p class="mb-0">Relação de Materiais Cautelados</p>
-</blockquote>
+</div>
+<br>
 <div class="row">
          <table id="table" class="table table-striped table-hover table-bordered dt-responsive" cellspacing="0" width="100%">
             <thead>

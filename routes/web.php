@@ -56,6 +56,8 @@ Route::post('/cautelas/detalhes', 'CautelaController@detalhes');
 /*Cautelar Material*/
 Route::any('/cautelamaterial', 'CautelaMaterialController@novo');
 
+Route::any('/descautelamaterial', 'CautelaMaterialController@descautela');
+
 Route::post('/cautelamaterial/adiciona', 'CautelaMaterialController@adiciona');
 
 Route::post('/cautelamaterial/entrega', 'CautelaMaterialController@entrega');

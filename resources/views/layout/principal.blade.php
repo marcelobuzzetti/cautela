@@ -8,6 +8,7 @@
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Cautela</title>
@@ -197,11 +198,15 @@
         <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/dataTables.min.js') }}"></script>
         <script src="{{ asset('js/modernizr-custom.js') }}"></script>
+        <script src="{{ asset('js/select2.min.js') }}"></script>
         <script type="text/javascript">
           $(document).ready( function () {
           if(!Modernizr.inputtypes.date){
             $( "input[name='data_cautela']" ).datepicker({ dateFormat: 'yy-mm-dd' });
             } 
+
+           $('.js-example-responsive').select2();
+
             
             $('#table').DataTable( {
               responsive: true,
