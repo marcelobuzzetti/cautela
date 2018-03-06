@@ -20,19 +20,31 @@ class MaterialController extends Controller
     public function lista(){
     	if(Auth::user()->perfil == 1){
     		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
-    		materiais.descricao, materiais.quantidade, reservas.nome as reserva, materiais.active
-    		from materiais,reservas 
-    		where materiais.reserva = reservas.id');
+									materiais.descricao, materiais.quantidade, reservas.nome as reserva, materiais.active, 
+									sum(materiais.quantidade - ifnull((select sum(cautelamateriais.quantidade) AS quantidade 
+									from cautelamateriais
+									where cautelamateriais.data_entrega IS NULL
+									and cautelamateriais.material = materiais.id
+									group by cautelamateriais.material),0)) as existente
+						    		from materiais,reservas 
+						    		where materiais.reserva = reservas.id
+						            group by materiais.id');
 
     	} else {
 
     		$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
-	    		materiais.descricao, materiais.quantidade, reservas.nome as reserva, materiais.active
-	    		from materiais,reservas 
-	    		where materiais.reserva = reservas.id
-	    		and reservas.id != 1
-	    		and active = 1
-	    		and materiais.reserva = ?',
+									materiais.descricao, materiais.quantidade, reservas.nome as reserva, materiais.active, 
+									sum(materiais.quantidade - ifnull((select sum(cautelamateriais.quantidade) AS quantidade 
+									from cautelamateriais
+									where cautelamateriais.data_entrega IS NULL
+									and cautelamateriais.material = materiais.id
+									group by cautelamateriais.material),0)) as existente
+						    		from materiais,reservas 
+						    		where materiais.reserva = reservas.id
+						    		and reservas.id != 1
+						    		and active = 1
+						    		and materiais.reserva = ?
+						    		group by materiais.id',
 	    		array(Auth::user()->perfil));
     }
 		

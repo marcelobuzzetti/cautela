@@ -27,10 +27,11 @@ class CautelaController extends Controller
 		return view('cautela.listagem')->withCautelas($cautelas);
 
     	} else {
-    	$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, militares.nome_guerra as nome, data_cautela, data_entrega
-    		from cautelas,militares, reservas
+    	$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, postograd.patente, militares.nome_guerra as nome, data_cautela, data_entrega
+    		from cautelas,militares, reservas, postograd
     		where cautelas.militar = militares.id
     		and cautelas.reserva = reservas.id
+    		and militares.patente = postograd.id
             and cautelas.reserva =  ?',
             array(Auth::user()->perfil));
 		

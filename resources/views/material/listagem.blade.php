@@ -18,6 +18,7 @@
                   <th>Valor</th>
                   <th>Descrição</th>
                   <th>Quantidade</th>
+                  <th>Existente</th>
                   <th>Reserva</th>
                   <th>Ativo</th>
                   @if(Auth::user()->perfil == 1)
@@ -32,6 +33,7 @@
                   <th>Valor</th>
                   <th>Descrição</th>
                   <th>Quantidade</th>
+                  <th>Existente</th>
                   <th>Reserva</th>
                   <th>Ativo</th>
                   @if(Auth::user()->perfil == 1)
@@ -48,6 +50,7 @@
                 <td>{{$m->valor}}</td>
                 <td>{{$m->descricao or 'nenhuma descrição'}}</td>
                 <td>{{$m->quantidade}}</td>
+                <td>{{$m->existente}}</td>
                 <td>{{$m->reserva}}</td>
                 <td>@if($m->active == 1) Sim @else Não @endif </td>
                  @if(Auth::user()->perfil == 1)
