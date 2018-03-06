@@ -109,10 +109,11 @@ where militares.patente = postograd.id');
 
 	public function detalhes(){
 		$id = Request::input('id');
-		$cautela = DB::select('select cautelas.id, postograd.patente, militares.nome_guerra as nome, militares.telefone, militares.email 
-    		from cautelas,militares, postograd
+		$cautela = DB::select('select cautelas.id, postograd.patente, militares.nome_guerra as nome, militares.nome as nome_completo, militares.telefone, militares.email, pelotoes.nome as pelotao
+    		from cautelas,militares, postograd, pelotoes
     		where cautelas.militar = militares.id
     		and militares.patente = postograd.id
+    		and militares.pelotao = pelotoes.id
             and cautelas.id = ?',
         array($id));
 

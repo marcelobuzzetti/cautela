@@ -41,4 +41,11 @@
             </tbody>
           </table>  
       </div>
+      <br>
+      <br>
+      <br>
+      <br>
+        @foreach ($cautela as $c)
+        <p class="text-center">{{ $c->nome_completo }} - {{ $c->patente}} <br> {{ $c->pelotao }}</p>
+        @endforeach
 @endsection
