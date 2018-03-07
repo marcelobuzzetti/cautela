@@ -26,10 +26,14 @@
   <div class="form-group">
     <label>Material</label>
     <select class="js-example-responsive custom-select" id="material" name="material" required="required">
+      @if($materiais)
       <option value="" selected disabled>Selecione o Material</option>
       @foreach ($materiais as $m)
         <option value="{{$m->id}}">{{$m->nome}}</option>
       @endforeach
+      @else
+      <option value="" selected disabled>Todos os materiais estão cautelados</option>
+      @endif
     </select>
   </div>
    <div class="form-group">
