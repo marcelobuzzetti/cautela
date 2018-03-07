@@ -18,7 +18,7 @@ class CautelaController extends Controller
 
     public function lista(){
     	if(Auth::user()->perfil == 1){
-    			$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, postograd.patente, militares.nome_guerra as nome, data_cautela, data_entrega
+    			$cautelas = DB::select('select reservas.nome as reserva, cautelas.id, postograd.patente, militares.nome_guerra as nome, data_cautela, data_entrega, (select users.name from users where users.id = cautelas.usuario_cautela) as cautelador, (select users.name from users where users.id = cautelas.usuario_entrega) as descautelador
     		from cautelas,militares, reservas, postograd
     		where cautelas.militar = militares.id
     		and militares.patente = postograd.id

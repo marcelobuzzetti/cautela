@@ -29,7 +29,7 @@
       @if($materiais)
       <option value="" selected disabled>Selecione o Material</option>
       @foreach ($materiais as $m)
-        <option value="{{$m->id}}">{{$m->nome}}</option>
+        <option value="{{$m->id}}" @if($m->quantidade <= 0) disabled @endif>{{$m->nome}} - Qnt Disp {{ $m->quantidade }}</option>
       @endforeach
       @else
       <option value="" selected disabled>Todos os materiais estão cautelados</option>

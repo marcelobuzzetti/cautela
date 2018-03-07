@@ -23,6 +23,7 @@
                   <th>Reserva</th>
                   <th>Militar</th>
                   <th>Data da Cautela</th>
+                  <th>Cautelador</th>
                   <th>Cautelar</th>
                   <th>Descautelar</th>
                   <th>Visualizar Cautela</th>
@@ -36,6 +37,7 @@
                   <th>Reservaf</th>
                   <th>Militar</th>
                   <th>Data da Cautela</th>
+                  <th>Cautelador</th>
                   <th>Cautelar</th>
                   <th>Descautelar</th>
                   <th>Visualizar Cautela</th>
@@ -51,6 +53,7 @@
                 <td>{{$c->reserva}}</td>
                 <td>{{ $c->patente }} {{$c->nome}}</td>
                 <td>{{$c->data_cautela}}</td>
+                <td>{{$c->cautelador}}</td>
                 @if($c->data_entrega)
                <td>Cautela Encerrada</td>
                @else

@@ -40,18 +40,13 @@ class CautelaMaterialController extends Controller
         if(Auth::user()->perfil == 1){
             $materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
             materiais.descricao, reservas.nome as reserva,
-            materiais.quantidade - (select sum(cautelamateriais.quantidade) AS quantidade 
+            materiais.quantidade - ifnull((select sum(cautelamateriais.quantidade) AS quantidade 
                 from cautelamateriais
                 where cautelamateriais.data_entrega IS NULL
                 and cautelamateriais.material = materiais.id
-                group by cautelamateriais.material) as quantidade
+                group by cautelamateriais.material),0) as quantidade
             from materiais,reservas 
             where materiais.reserva = reservas.id
-            and (materiais.quantidade - (select sum(cautelamateriais.quantidade) AS quantidade 
-                from cautelamateriais
-                where cautelamateriais.data_entrega IS NULL
-                and cautelamateriais.material = materiais.id
-                group by cautelamateriais.material)) > 0
             and reservas.id = ?',
             array($teste));
 
@@ -63,18 +58,13 @@ class CautelaMaterialController extends Controller
 
         	$materiais = DB::select('select materiais.id, materiais.nome, materiais.valor, 
             materiais.descricao, reservas.nome as reserva,
-            materiais.quantidade - (select sum(cautelamateriais.quantidade) AS quantidade 
+            materiais.quantidade - ifnull((select sum(cautelamateriais.quantidade) AS quantidade 
                 from cautelamateriais
                 where cautelamateriais.data_entrega IS NULL
                 and cautelamateriais.material = materiais.id
-                group by cautelamateriais.material) as quantidade
+                group by cautelamateriais.material),0) as quantidade
             from materiais,reservas 
             where materiais.reserva = reservas.id
-            and (materiais.quantidade - (select sum(cautelamateriais.quantidade) AS quantidade 
-                from cautelamateriais
-                where cautelamateriais.data_entrega IS NULL
-                and cautelamateriais.material = materiais.id
-                group by cautelamateriais.material)) > 0
                 and reservas.id != 1
                 and materiais.reserva = ?',
                 array(Auth::user()->perfil));
