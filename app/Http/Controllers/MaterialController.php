@@ -28,7 +28,8 @@ class MaterialController extends Controller
 									group by cautelamateriais.material),0)) as existente
 						    		from materiais,reservas 
 						    		where materiais.reserva = reservas.id
-						            group by materiais.id');
+						            group by materiais.id
+						            order by materiais.nome');
 
     	} else {
 
@@ -44,7 +45,8 @@ class MaterialController extends Controller
 						    		and reservas.id != 1
 						    		and active = 1
 						    		and materiais.reserva = ?
-						    		group by materiais.id',
+						    		group by materiais.id
+						    		order by materiais.nome',
 	    		array(Auth::user()->perfil));
     }
 		

@@ -41,8 +41,9 @@ class CautelaController extends Controller
 
 	public function novo(){
     	$militares = DB::select('select militares.id, militares.nome, postograd.patente, militares.nome_guerra, telefone, email, pelotao, militares.active 
-from militares, postograd
-where militares.patente = postograd.id');
+			from militares, postograd
+			where militares.patente = postograd.id
+			order by militares.nome_guerra');
 
     	$reservas = DB::select('select * from reservas');
 
