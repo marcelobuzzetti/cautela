@@ -47,7 +47,8 @@ class CautelaMaterialController extends Controller
                 group by cautelamateriais.material),0) as quantidade
             from materiais,reservas 
             where materiais.reserva = reservas.id
-            and reservas.id = ?',
+            and reservas.id = ?
+            order by materiais.nome',
             array($teste));
 
         } else {
@@ -66,7 +67,8 @@ class CautelaMaterialController extends Controller
             from materiais,reservas 
             where materiais.reserva = reservas.id
                 and reservas.id != 1
-                and materiais.reserva = ?',
+                and materiais.reserva = ?
+                order by materiais.nome',
                 array(Auth::user()->perfil));
             }
 
